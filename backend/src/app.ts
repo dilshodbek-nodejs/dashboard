@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ "origin": "*" }));
 app.use(bodyParser.json({ limit: '150mb' }));
 app.use(express.json({ limit: '150mb' }));
 app.use('/uploads', express.static('uploads'));
