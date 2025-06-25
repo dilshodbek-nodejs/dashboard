@@ -10,7 +10,7 @@ interface BlogCreationProps {
   onCancelEdit?: () => void;
 }
 
-const backendBaseUrl = 'http://15.235.141.2:4000';
+const backendBaseUrl = 'http://localhost:4000';
 const getImageUrl = (url) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 export const BlogCreation: React.FC<BlogCreationProps> = ({ 

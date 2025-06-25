@@ -8,8 +8,8 @@ import { Test, Blog } from './types';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import QuizPage from './components/QuizPage';
 
-const baseUri = 'http://15.235.141.2:4000/api';
-const backendBaseUrl = 'http://15.235.141.2:4000';
+const baseUri = 'http://localhost:4000/api';
+const backendBaseUrl = 'http://localhost:4000';
 const getImageUrl = (url) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 function MainDashboard() {

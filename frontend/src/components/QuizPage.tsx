@@ -11,7 +11,7 @@ const QuizPage: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://15.235.141.2:4000/api/tests')
+    fetch('http://localhost:4000/api/tests')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch questions');
         return res.json();
