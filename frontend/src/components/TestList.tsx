@@ -28,10 +28,10 @@ export const TestList: React.FC<TestListProps> = ({ tests, onTestEdit, onTestDel
             <div className="flex-1">
               <h4 className="text-base font-medium text-gray-900 mb-3">{test.question}</h4>
               <div className="space-y-2">
-                {test.options.map((option, index) => (
-                  <div key={index} className="flex items-center space-x-3">
+                {test.options.map((option, idx) => (
+                  <div key={idx} className="flex items-center space-x-3">
                     <div className="flex-shrink-0 w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center text-xs font-medium text-gray-600">
-                      {String.fromCharCode(65 + index)}
+                      {String.fromCharCode(65 + idx)}
                     </div>
                     <span className={`text-sm ${option.isCorrect ? 'text-green-700 font-medium' : 'text-gray-700'}`}>
                       {option.text}
@@ -60,7 +60,7 @@ export const TestList: React.FC<TestListProps> = ({ tests, onTestEdit, onTestDel
               </button>
               <div className="flex items-center space-x-1 text-xs text-gray-500">
                 <Calendar size={14} />
-                <span>{test.createdAt.toLocaleDateString()}</span>
+                <span>{new Date(test.createdAt).toLocaleDateString()}</span>
               </div>
             </div>
           </div>

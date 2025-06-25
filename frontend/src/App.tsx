@@ -5,12 +5,14 @@ import { BlogCreation } from './components/BlogCreation';
 import { TestList } from './components/TestList';
 import { BlogList } from './components/BlogList';
 import { Test, Blog } from './types';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import QuizPage from './components/QuizPage';
 
 const baseUri = 'http://localhost:4000/api';
 const backendBaseUrl = 'http://localhost:4000';
 const getImageUrl = (url) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
-function App() {
+function MainDashboard() {
   const [activeSection, setActiveSection] = useState<'tests' | 'blogs'>('tests');
   const [tests, setTests] = useState<Test[]>([]);
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -120,46 +122,54 @@ function App() {
     <div className="min-h-screen bg-gray-50 flex">
       {/* Blog view popup */}
       {viewBlog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full p-6 relative">
-            <button onClick={() => setViewBlog(null)} className="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-xl">&times;</button>
-            {viewBlog.coverImage && (
-              <img src={getImageUrl(viewBlog.coverImage)} alt="Cover" className="w-full h-48 object-cover rounded mb-4" />
-            )}
-            <h2 className="text-2xl font-bold mb-2">{viewBlog.title}</h2>
-            <p className="text-gray-600 mb-4">{viewBlog.description}</p>
-            <div className="space-y-4">
-              {viewBlog.content.map(block =>
-                block.type === 'text' ? (
-                  <p key={block.id} className="text-base text-gray-800">{block.content}</p>
-                ) : (
-                  <img key={block.id} src={getImageUrl(block.content)} alt="Blog" className="w-full rounded" />
-                )
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
+          <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full p-6 relative flex flex-col max-h-[90vh]">
+            <button 
+              onClick={() => setViewBlog(null)} 
+              className="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-4xl leading-none z-10 w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <div className="flex-1 overflow-y-auto pr-4 -mr-4 custom-scrollbar">
+              {viewBlog.coverImage && (
+                <img src={getImageUrl(viewBlog.coverImage)} alt="Cover" className="w-full h-64 object-cover rounded-lg mb-4" />
               )}
+              <h2 className="text-3xl font-bold mb-2 pr-8">{viewBlog.title}</h2>
+              <p className="text-gray-600 mb-6">{viewBlog.description}</p>
+              <div className="space-y-4 prose max-w-none">
+                {viewBlog.content.map(block =>
+                  block.type === 'text' ? (
+                    <p key={block.id} className="text-base text-gray-800">{block.content}</p>
+                  ) : (
+                    <img key={block.id} src={getImageUrl(block.content)} alt="Blog" className="w-full rounded-lg my-4" />
+                  )
+                )}
+              </div>
             </div>
           </div>
         </div>
       )}
-      <Sidebar 
-        activeSection={activeSection} 
+      <Sidebar
+        activeSection={activeSection}
         onSectionChange={setActiveSection}
         isOpen={sidebarOpen}
         onToggle={() => setSidebarOpen(!sidebarOpen)}
       />
-      
+
       {/* Overlay for mobile */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-20 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
-      
-      <main className="flex-1 lg:ml-64">
+
+      <main className="flex-1 lg:ml-64 min-w-0">
         <div className="p-6">
           {activeSection === 'tests' ? (
             <div className="space-y-8">
-              <TestCreation 
+              <TestCreation
                 onTestCreate={handleTestCreate}
                 onTestUpdate={handleTestUpdate}
                 editingTest={editingTest}
@@ -169,7 +179,7 @@ function App() {
             </div>
           ) : (
             <div className="space-y-8">
-              <BlogCreation 
+              <BlogCreation
                 onBlogCreate={handleBlogCreate}
                 onBlogUpdate={handleBlogUpdate}
                 editingBlog={editingBlog}
@@ -180,6 +190,27 @@ function App() {
           )}
         </div>
       </main>
+    </div>
+  );
+}
+
+function App() {
+  const location = useLocation();
+  const isQuizPage = location.pathname === '/quiz';
+  return (
+    <div>
+      {/* Only show navbar if not on /quiz */}
+      {!isQuizPage && (
+        <nav className="w-full flex justify-between items-center px-8 py-4 bg-gray-100 border-b border-gray-200">
+          <div className="flex items-center gap-4">
+            <Link to="/" className="font-bold text-lg text-gray-800 hover:underline">Dashboard</Link>
+          </div>
+        </nav>
+      )}
+      <Routes>
+        <Route path="/" element={<MainDashboard />} />
+        <Route path="/quiz" element={<QuizPage />} />
+      </Routes>
     </div>
   );
 }

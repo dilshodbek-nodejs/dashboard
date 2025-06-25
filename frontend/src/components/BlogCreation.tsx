@@ -59,28 +59,21 @@ export const BlogCreation: React.FC<BlogCreationProps> = ({
     setContent([]);
   };
 
-  const handleSubmit = (e: React.FormEvent, status: 'draft' | 'published') => {
+  const handleSubmit = async (e: React.FormEvent, status: 'draft' | 'published') => {
     e.preventDefault();
-    if (title.trim() && description.trim() && content.length > 0) {
-      const blogData = {
-        title: title.trim(),
-        description: description.trim(),
-        content,
-        coverImage,
-        status
-      };
-
-      if (editingBlog && onBlogUpdate) {
-        onBlogUpdate({
-          ...editingBlog,
-          ...blogData
-        });
-      } else {
-        onBlogCreate(blogData);
-      }
-      
-      resetForm();
+    const blogData = {
+      title,
+      description,
+      content: content.filter(block => block.content.trim() !== ''),
+      coverImage,
+      status
+    };
+    if (editingBlog) {
+      onBlogUpdate?.({ ...editingBlog, ...blogData });
+    } else {
+      onBlogCreate?.(blogData);
     }
+    resetForm();
   };
 
   const handleCancel = () => {

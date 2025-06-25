@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="%PUBLIC_URL%/style.css" />
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+
+    <style>
+        @keyframes text-shine {
+
+            0%,
+            100% {
+                color: #fff;
+                text-shadow: 0 0 7px #fff, 0 0 10px #fff;
+            }
+
+            50% {
+                color: #595f65;
+                /* A dark color for the "off" state of the pulse */
+                text-shadow: none;
+            }
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        #blog-posts-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .blog-card-custom {
+            background-image: linear-gradient(rgba(212, 187, 0, 0.188), rgba(248, 248, 248, 0.85)), url('images/background.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: all 0.3s ease;
+            border: 3px solid white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            /* To contain the badge ribbon */
+        }
+
+        .blog-card-custom:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(254, 163, 187, 0.3);
+        }
+
+        .blog-card-custom img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+
+        .blog-card-custom .content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .blog-card-custom h2 {
+            font-size: 3.2rem;
+            color: #e84393;
+            margin: 0 0 0.5rem 0;
+            font-family: 'Comic Sans MS', cursive;
+            min-height: 80px;
+            font-weight: normal;
+        }
+
+        .blog-card-custom h4 {
+            font-size: 2rem;
+            color: #6a5acd;
+            line-height: 1.6;
+            min-height: 80px;
+            font-weight: normal;
+        }
+
+        .blog-card-custom .btn-custom {
+            display: inline-block;
+            align-self: center;
+            margin-top: auto;
+            padding: 1.2rem 2rem;
+            background: #e84393;
+            color: #fff;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 2rem;
+            box-shadow: none;
+            transition: background-color 0.3s ease;
+            border: none;
+        }
+
+        .blog-card-custom .btn-custom:hover {
+            background: #d83383;
+        }
+
+        .latest-badge {
+            position: absolute;
+            top: 15px;
+            left: -5px;
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            display: none;
+            /* Hidden by default */
+        }
+
+        .latest-badge::before {
+            content: "";
+            position: absolute;
+            width: 16%;
+            height: 35px;
+            background: #c0392b;
+            /* A deeper, more professional red */
+            transform: rotate(-0deg) translateY(-15px);
+            transform-origin: top left;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .latest-badge span {
+            position: absolute;
+            top: 25px;
+            left: 5px;
+            color: #fff;
+            font-weight: bold;
+            transform: rotate(-45deg);
+            font-size: 3rem;
+            text-align: center;
+            width: 100%;
+            animation: text-shine 2s infinite ease-in-out;
+            /* Applying the shine animation */
+        }
+
+        .blog-card-custom:first-child .latest-badge {
+            display: block;
+            /* Only show on the first card */
+        }
+
+        .blog-card-custom .cover-image-custom {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 991px) {
+            #blog-posts-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #blog-posts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- header section starts  -->
+
+    <header>
+
+        <a href="#" class="logo"><img src="logo.png" alt="logo"> </a>
+
+        <div id="menu-bars" class="fas fa-bars"></div>
+
+        <nav class="navbar">
+            <a href="#home">Bosh Sahifa</a>
+            <a href="#features">Tarbiya uchun</a>
+            <a href="#about">O'yinlar</a>
+            <a href="#services">Fanlar</a>
+            <a href="http://localhost:5173/quiz">Testlar</a>
+            <a href="#pricing">Galeriya</a>
+            <a href="#contact">contact</a>
+        </nav>
+
+    </header>
+
+    <!-- header section ends -->
+
+    <!-- home section starts  -->
+
+    <section class="home background" id="home">
+
+        <div class="content">
+            <h1>welcome to kidzies</h1>
+            <h3>making education more fun.</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore accusamus eum, dolore officiis facilis
+                fugiat sint. Animi unde blanditiis, ab quibusdam illum minus exercitationem dolore expedita asperiores
+                odit, consectetur iusto.</p>
+            <a href="#" class="btn">learn more</a>
+        </div>
+
+        <div class="image">
+            <img src="images/home-img.png" alt="">
+        </div>
+
+    </section>
+
+    <!-- home section ends -->
+
+    <!-- features section starts  -->
+
+    <section class="features up-and-down" id="features">
+
+        <div class="box-container">
+
+            <h3 class="title">why childrens love us</h3>
+
+            <div class="box">
+                <img src="images/left-icon1.png" alt="">
+                <div class="info">
+                    <h3>funny conversations</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, dolor!</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/left-icon2.png" alt="">
+                <div class="info">
+                    <h3>Many activities</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, dolor!</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/left-icon3.png" alt="">
+                <div class="info">
+                    <h3>fun non-stop</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, dolor!</p>
+                </div>
+            </div>
+
+        </div>
+
+        <img class="stick" src="images/stick.png" alt="">
+
+        <div class="box-container">
+
+            <h3 class="title">why parents choose us</h3>
+
+            <div class="box">
+                <img src="images/right-icon1.png" alt="">
+                <div class="info">
+                    <h3>Continuous monitoring</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, dolor!</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/right-icon2.png" alt="">
+                <div class="info">
+                    <h3>Professionalism teachers</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, dolor!</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/right-icon3.png" alt="">
+                <div class="info">
+                    <h3>Developed programs</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, dolor!</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- features section ends -->
+
+    <!-- about section starts  -->
+
+    <section class="about background" id="about">
+
+        <div class="image">
+            <img src="images/about-img.png" alt="">
+        </div>
+
+        <div class="content">
+            <h3>a word about us</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit nisi quod consequuntur dolor molestiae
+                magnam magni veritatis? Tenetur optio excepturi harum eius quaerat labore cumque dolorem dignissimos
+                alias. Perspiciatis, expedita.</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit minima odio est unde nesciunt
+                necessitatibus, fugiat laboriosam quidem magni? Maxime?</p>
+            <a href="#" class="btn">learn more</a>
+        </div>
+
+    </section>
+
+    <!-- about section ends -->
+
+    <!-- services section starts  -->
+
+    <section class="services up-and-down" id="services">
+
+        <h1 class="heading"> what we teach your childrens </h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="images/s1.jpg" alt="">
+                <div class="info">
+                    <h3>words and letters teaching</h3>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/s2.jpg" alt="">
+                <div class="info">
+                    <h3>clay and crafting</h3>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/s3.jpg" alt="">
+                <div class="info">
+                    <h3>drawing classes</h3>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/s4.jpg" alt="">
+                <div class="info">
+                    <h3>english classes</h3>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/s5.jpg" alt="">
+                <div class="info">
+                    <h3>playground for childrens</h3>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/s6.jpg" alt="">
+                <div class="info">
+                    <h3>sports events</h3>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- services section ends -->
+
+    <!-- teacher section starts  -->
+
+    <!-- <section class="teacher background" id="teacher">
+
+    <h1 class="heading">our amazing teachers</h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="images/teacher-1.png" alt="">
+            <h3>john deo</h3>
+            <span>teacher</span>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, molestiae ab soluta iste delectus facilis beatae earum reiciendis repellat, consequuntur sequi dolorem error, labore dolores ullam distinctio illo. Voluptas, molestias?</p>
+        </div>
+
+        <div class="box">
+            <img src="images/teacher-2.png" alt="">
+            <h3>john deo</h3>
+            <span>teacher</span>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, molestiae ab soluta iste delectus facilis beatae earum reiciendis repellat, consequuntur sequi dolorem error, labore dolores ullam distinctio illo. Voluptas, molestias?</p>
+        </div>
+
+        <div class="box">
+            <img src="images/teacher-3.png" alt="">
+            <h3>john deo</h3>
+            <span>teacher</span>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, molestiae ab soluta iste delectus facilis beatae earum reiciendis repellat, consequuntur sequi dolorem error, labore dolores ullam distinctio illo. Voluptas, molestias?</p>
+        </div>
+
+        <div class="box">
+            <img src="images/teacher-4.png" alt="">
+            <h3>john deo</h3>
+            <span>teacher</span>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, molestiae ab soluta iste delectus facilis beatae earum reiciendis repellat, consequuntur sequi dolorem error, labore dolores ullam distinctio illo. Voluptas, molestias?</p>
+        </div>
+
+    </div>
+
+</section> -->
+
+    <!-- teacher section ends -->
+
+    <!-- Blog Section Starts -->
+    <section class="blogs background" id="blogs">
+        <h1 class="heading">Our Latest Blogs</h1>
+        <div class="box-container" id="blog-posts-container">
+            <!-- Blog posts will be dynamically inserted here by JavaScript -->
+        </div>
+    </section>
+    <!-- Blog Section Ends -->
+
+    <!-- pricing section starts  -->
+
+    <section class="pricing up-and-down" id="pricing">
+
+        <h1 class="heading">our pricing plans</h1>
+
+        <div class="box-container">
+
+            <div class="box" style="background: url(images/card-bg1.png) no-repeat;">
+                <h3>weekly</h3>
+                <div class="price"><span>$</span>20</div>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem magnam rem harum, nostrum facilis
+                    labore excepturi dignissimos? Voluptatibus facere beatae quam quasi! Vero fugit molestias officiis
+                    quam, corrupti earum aliquid?</p>
+                <a href="#" class="btn">select plan</a>
+            </div>
+
+            <div class="box" style="background: url(images/card-bg2.png) no-repeat;">
+                <span class="choise">best <br> choise</span>
+                <h3>monthly</h3>
+                <div class="price"><span>$</span>50</div>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem magnam rem harum, nostrum facilis
+                    labore excepturi dignissimos? Voluptatibus facere beatae quam quasi! Vero fugit molestias officiis
+                    quam, corrupti earum aliquid?</p>
+                <a href="#" class="btn">select plan</a>
+            </div>
+
+            <div class="box" style="background: url(images/card-bg3.png) no-repeat;">
+                <h3>yearly</h3>
+                <div class="price"><span>$</span>250</div>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem magnam rem harum, nostrum facilis
+                    labore excepturi dignissimos? Voluptatibus facere beatae quam quasi! Vero fugit molestias officiis
+                    quam, corrupti earum aliquid?</p>
+                <a href="#" class="btn">select plan</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- pricing section ends -->
+
+    <!-- contact section starts  -->
+
+    <section class="contact background" id="contact">
+
+        <div class="row">
+
+            <div class="contact-info">
+
+                <div class="box">
+                    <h3 class="title">contact details</h3>
+                    <p> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104. </p>
+                    <p> <i class="fas fa-envelope"></i> example@gmail.com </p>
+                    <p> <i class="fas fa-phone"></i> +123-456-7890 </p>
+                </div>
+
+                <div class="box">
+                    <h3 class="title">follow us</h3>
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+
+                <div class="box">
+                    <h3 class="title">newsletter</h3>
+                    <form action="">
+                        <input type="email" placeholder="enter your email">
+                        <input type="submit" class="btn" value="send">
+                    </form>
+                </div>
+
+            </div>
+
+            <form action="" class="contact-form">
+
+                <h3>contact us</h3>
+
+                <input type="text" placeholder="name" class="box">
+                <input type="email" placeholder="email" class="box">
+                <input type="number" placeholder="number" class="box">
+                <textarea placeholder="message" class="box message" name="" id="" cols="30" rows="10"></textarea>
+
+                <input type="submit" class="btn" value="send message">
+
+            </form>
+
+        </div>
+
+        <div class="image">
+            <img src="images/contact-img.png" alt="">
+        </div>
+
+    </section>
+
+    <!-- contact section ends -->
+
+    <!-- footer section  -->
+
+    <div class="footer">
+        created by <span>SamaDev </span> | all rights reserved!
+    </div>
+
+    <div id="root"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let menu = document.querySelector('#menu-bars');
+            let navbar = document.querySelector('.navbar');
+
+            if (menu && navbar) {
+                menu.onclick = () => {
+                    menu.classList.toggle('fa-times');
+                    navbar.classList.toggle('active');
+                };
+            }
+
+            window.onscroll = () => {
+                if (menu && navbar) {
+                    menu.classList.remove('fa-times');
+                    navbar.classList.remove('active');
+                }
+            };
+            
+            const blogContainer = document.getElementById('blog-posts-container');
+            const backendUrl = 'http://localhost:4000';
+
+            if (!blogContainer) return;
+
+            // --- Loading Placeholders ---
+            blogContainer.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'blog-card-custom';
+                placeholder.innerHTML = `<div style="height: 450px; background: #fdf0f5; animation: pulse 1.5s infinite ease-in-out;"></div>`;
+                blogContainer.appendChild(placeholder);
+            }
+
+            fetch(`${backendUrl}/api/blogs`)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(blogs => {
+                    blogContainer.innerHTML = ''; // Clear placeholders
+
+                    const latestBlogs = blogs.filter(b => b.status === 'published').slice(0, 3);
+
+                    if (latestBlogs.length === 0) {
+                        blogContainer.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; font-size: 1.2rem; color: #666;">No stories found yet!</p>';
+                        return;
+                    }
+
+                    latestBlogs.forEach((blog, index) => {
+                        const blogCard = document.createElement('div');
+                        blogCard.className = 'blog-card-custom';
+
+                        const imageUrl = blog.coverImage
+                            ? (blog.coverImage.startsWith('http') ? blog.coverImage : `${backendUrl}${blog.coverImage}`)
+                            : 'images/s1.jpg'; // A playful fallback image
+
+                        let ribbonHTML = '';
+                        if (index === 0) { // Add badge to the first post
+                            ribbonHTML = `
+                                <div class="latest-badge">
+                                    <span>Latest</span>
+                                </div>
+                            `;
+                        }
+
+                        blogCard.innerHTML = `
+                            ${ribbonHTML}
+                            <img src="${imageUrl}" alt="${blog.title}">
+                            <div class="content">
+                                <div>
+                                    <h2>${blog.title}</h2>
+                                    <h4>${blog.description.substring(0, 80)}...</h4>
+                                </div>
+                                <a href="#" class="btn-custom">Read More</a>
+                            </div>
+                        `;
+                        blogContainer.appendChild(blogCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching blog posts:', error);
+                    blogContainer.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: red;">Could not load stories.</p>';
+                });
+        });
+    </script>
+
+</body>
+
+</html>
