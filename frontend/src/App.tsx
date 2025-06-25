@@ -10,7 +10,7 @@ import QuizPage from './components/QuizPage';
 
 const baseUri = '/api';
 const backendBaseUrl = '';
-const getImageUrl = (url) => url?.startsWith('http') ? url : backendBaseUrl + url;
+const getImageUrl = (url: any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 function MainDashboard() {
   const [activeSection, setActiveSection] = useState<'tests' | 'blogs'>('tests');
@@ -124,8 +124,8 @@ function MainDashboard() {
       {viewBlog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
           <div className="bg-white rounded-lg shadow-lg max-w-2xl w-full p-6 relative flex flex-col max-h-[90vh]">
-            <button 
-              onClick={() => setViewBlog(null)} 
+            <button
+              onClick={() => setViewBlog(null)}
               className="absolute top-4 right-4 text-gray-500 hover:text-red-500 text-4xl leading-none z-10 w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors"
               aria-label="Close"
             >
