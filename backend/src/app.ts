@@ -12,7 +12,7 @@ app.use(bodyParser.json({ limit: '150mb' }));
 app.use(express.json({ limit: '150mb' }));
 app.use('/uploads', express.static('uploads'));
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/estetik-tarbiya';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://0.0.0.0:27017/estetik-tarbiya';
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('MongoDB connected'))
   .catch((err: any) => console.error('MongoDB connection error:', err));
