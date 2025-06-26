@@ -10,7 +10,7 @@ interface BlogCreationProps {
   onCancelEdit?: () => void;
 }
 
-const backendBaseUrl = 'http://15.235.141.2:5000';
+const backendBaseUrl = '';
 const getImageUrl = (url:any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 export const BlogCreation: React.FC<BlogCreationProps> = ({ 
@@ -39,12 +39,12 @@ export const BlogCreation: React.FC<BlogCreationProps> = ({
       const formData = new FormData();
       formData.append('image', file);
 
-      const res = await fetch(backendBaseUrl + '/api/blogs/upload-image', {
+      const res = await fetch('/api/blogs/upload-image', {
         method: 'POST',
         body: formData
       });
       const data = await res.json();
-      setCoverImage(backendBaseUrl + data.url);
+      setCoverImage(data.url);
     }
   };
 

@@ -9,7 +9,7 @@ interface DynamicEditorProps {
   onChange: (content: ContentBlock[]) => void;
 }
 
-const backendBaseUrl = 'http://15.235.141.2:5000';
+const backendBaseUrl = '';
 
 export const DynamicEditor: React.FC<DynamicEditorProps> = ({ content, onChange }) => {
   const [showImageUpload, setShowImageUpload] = useState<number | null>(null);
@@ -48,12 +48,12 @@ export const DynamicEditor: React.FC<DynamicEditorProps> = ({ content, onChange 
     const formData = new FormData();
     formData.append('image', file);
 
-    const res = await fetch('http://15.235.141.2:5000/api/blogs/upload-image', {
+    const res = await fetch('/api/blogs/upload-image', {
       method: 'POST',
       body: formData
     });
     const data = await res.json();
-    const backendBaseUrl = 'http://15.235.141.2:5000';
+    const backendBaseUrl = '';
     const imageUrl = backendBaseUrl + data.url;
     // Insert a new content block with the image URL
     const imageBlock: ContentBlock = {

@@ -10,7 +10,7 @@ interface Blog {
   content: { id: string; type: string; content: string }[];
 }
 
-const backendBaseUrl = 'http://15.235.141.2:5000';
+const backendBaseUrl = '';
 
 const Home: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);

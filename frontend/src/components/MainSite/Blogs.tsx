@@ -33,7 +33,7 @@ const Blogs: React.FC = () => {
       });
   }, []);
 
-  const backendBaseUrl = 'http://15.235.141.2:5000';
+  const backendBaseUrl = '';
   const visibleBlogs = showAll ? blogs : blogs.slice(0, 6);
 
   return (
