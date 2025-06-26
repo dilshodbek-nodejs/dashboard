@@ -38,6 +38,8 @@ exports.getTest = getTest;
 exports.createTestHandler = createTestHandler;
 exports.updateTestHandler = updateTestHandler;
 exports.deleteTestHandler = deleteTestHandler;
+exports.createTestTopicHandler = createTestTopicHandler;
+exports.getAllTopicsHandler = getAllTopicsHandler;
 const testService = __importStar(require("../services/test.service"));
 async function listTests(req, res) {
     const tests = await testService.getAllTests();
@@ -50,16 +52,16 @@ async function getTest(req, res) {
     res.json(test);
 }
 async function createTestHandler(req, res) {
-    const { question, options } = req.body;
+    const { question, options, topic } = req.body;
     if (!question || !options || !Array.isArray(options)) {
         return res.status(400).json({ message: 'Invalid test data' });
     }
-    const newTest = await testService.createTest({ question, options });
+    const newTest = await testService.createTest({ question, options, topic });
     res.status(201).json(newTest);
 }
 async function updateTestHandler(req, res) {
-    const { question, options } = req.body;
-    const updated = await testService.updateTest(req.params.id, { question, options });
+    const { question, options, topic } = req.body;
+    const updated = await testService.updateTest(req.params.id, { question, options, topic });
     if (!updated)
         return res.status(404).json({ message: 'Test not found' });
     res.json(updated);
@@ -69,4 +71,16 @@ async function deleteTestHandler(req, res) {
     if (!deleted)
         return res.status(404).json({ message: 'Test not found' });
     res.json({ success: true });
+}
+async function createTestTopicHandler(req, res) {
+    const { title, description } = req.body;
+    if (!title || !description) {
+        return res.status(400).json({ message: 'Invalid topic data' });
+    }
+    const newTopic = await testService.createTestTopic({ title, description });
+    res.status(201).json(newTopic);
+}
+async function getAllTopicsHandler(req, res) {
+    const topics = await testService.getAllTopics();
+    res.json(topics);
 }

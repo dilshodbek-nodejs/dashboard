@@ -5,6 +5,8 @@ exports.getTestById = getTestById;
 exports.createTest = createTest;
 exports.updateTest = updateTest;
 exports.deleteTest = deleteTest;
+exports.createTestTopic = createTestTopic;
+exports.getAllTopics = getAllTopics;
 const test_model_1 = require("../models/test.model");
 async function getAllTests() {
     return test_model_1.TestModel.find().sort({ createdAt: -1 }).exec();
@@ -22,4 +24,11 @@ async function updateTest(id, data) {
 async function deleteTest(id) {
     const res = await test_model_1.TestModel.findByIdAndDelete(id).exec();
     return !!res;
+}
+async function createTestTopic(data) {
+    const topic = new test_model_1.TestTopicModel({ ...data });
+    return topic.save();
+}
+async function getAllTopics() {
+    return test_model_1.TestTopicModel.find().sort({ createdAt: -1 }).exec();
 }

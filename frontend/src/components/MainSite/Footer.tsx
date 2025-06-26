@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => (
   <div className="footer">
-    created by <span>SamaDev </span> | all rights reserved!
+    Muallif: <span>SamaDev </span> | Barcha huquqlar himoyalangan!
   </div>
 );
 

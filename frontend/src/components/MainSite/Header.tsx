@@ -31,13 +31,13 @@ const Header: React.FC = () => {
         style={{ cursor: 'pointer' }}
       ></div>
       <nav className={`navbar${menuActive ? ' active' : ''}`}>
-        <a href="#home" onClick={handleNavClick}>Bosh Sahifa</a>
+        <a href="#home" onClick={handleNavClick}>Bosh sahifa</a>
         <a href="#features" onClick={handleNavClick}>Tarbiya uchun</a>
         <a href="#about" onClick={handleNavClick}>O'yinlar</a>
         <a href="#services" onClick={handleNavClick}>Fanlar</a>
         <a href="/quiz" onClick={handleNavClick}>Testlar</a>
-        <a href="#pricing" onClick={handleNavClick}>Galeriya</a>
-        <a href="#contact" onClick={handleNavClick}>contact</a>
+        <a href="#pricing" onClick={handleNavClick}>Galereya</a>
+        <a href="#contact" onClick={handleNavClick}>Aloqa</a>
       </nav>
     </header>
   );

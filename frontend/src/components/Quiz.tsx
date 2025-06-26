@@ -67,7 +67,7 @@ export const Quiz: React.FC = () => {
   if (loading) {
     return (
       <div className={`min-h-screen flex items-center justify-center ${babyColors.bg}`}>
-        <div className="text-2xl text-pink-400 font-bold animate-pulse">Loading questions...</div>
+        <div className="text-2xl text-pink-400 font-bold animate-pulse">Savollar yuklanmoqda...</div>
       </div>
     );
   }
@@ -83,7 +83,7 @@ export const Quiz: React.FC = () => {
   if (!questions.length) {
     return (
       <div className={`min-h-screen flex items-center justify-center ${babyColors.bg}`}>
-        <div className="text-2xl text-pink-400 font-bold">No questions found.</div>
+        <div className="text-2xl text-pink-400 font-bold">Savollar topilmadi.</div>
       </div>
     );
   }
@@ -97,12 +97,12 @@ export const Quiz: React.FC = () => {
       <nav className="w-full flex justify-between items-center px-8 py-4">
         <div className="flex items-center gap-2">
           <span className="text-2xl">🧒👧</span>
-          <span className="font-bold text-lg">Quiz Time!</span>
+          <span className="font-bold text-lg">Test vaqti!</span>
         </div>
-        <div className="text-lg font-bold text-pink-600">Points: {points}</div>
+        <div className="text-lg font-bold text-pink-600">Ball: {points}</div>
       </nav>
       <div className={`w-full max-w-xl rounded-3xl shadow-lg p-8 mt-4 ${babyColors.card} border-4 ${babyColors.border}`}>        
-        <h2 className="text-3xl font-extrabold text-center mb-2 text-pink-500" style={{ fontFamily: 'Comic Sans MS, Comic Sans, cursive' }}>Select Correct Option</h2>
+        <h2 className="text-3xl font-extrabold text-center mb-2 text-pink-500" style={{ fontFamily: 'Comic Sans MS, Comic Sans, cursive' }}>To‘g‘ri javobni tanlang</h2>
         <div className="text-xl text-center mb-8 text-gray-700">{questions[current].question}</div>
         <div className="flex flex-col gap-4 mb-8">
           {questions[current].options.map((opt, idx) => (
@@ -126,14 +126,14 @@ export const Quiz: React.FC = () => {
             onClick={handlePrev}
             disabled={current === 0}
           >
-            Previous Question
+            Oldingi savol
           </button>
           <button
             className="px-6 py-2 rounded-lg border-2 border-pink-300 bg-pink-400 text-white font-bold text-lg disabled:opacity-50"
             onClick={handleNext}
             disabled={current === questions.length - 1}
           >
-            Next Question
+            Keyingi savol
           </button>
         </div>
       </div>

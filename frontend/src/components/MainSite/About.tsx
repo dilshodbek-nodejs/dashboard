@@ -6,10 +6,10 @@ const About: React.FC = () => (
       <img src="/images/about-img.png" alt="" />
     </div>
     <div className="content">
-      <h3>a word about us</h3>
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit nisi quod consequuntur dolor molestiae magnam magni veritatis? Tenetur optio excepturi harum eius quaerat labore cumque dolorem dignissimos alias. Perspiciatis, expedita.</p>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit minima odio est unde nesciunt necessitatibus, fugiat laboriosam quidem magni? Maxime?</p>
-      <a href="#" className="btn">learn more</a>
+      <h3>Biz haqimizda</h3>
+      <p>Bizning markazimizda har bir bola o‘zini erkin va baxtli his qiladi. Biz bolalarning ijodiy va intellektual rivojlanishi uchun barcha sharoitlarni yaratamiz.</p>
+      <p>Jamoamiz tajribali o‘qituvchilar va tarbiyachilardan iborat bo‘lib, har bir bolaga individual yondashuvni kafolatlaydi. Farzandingiz biz bilan yangi bilim va ko‘nikmalarga ega bo‘ladi!</p>
+      <a href="#" className="btn">Batafsil</a>
     </div>
   </section>
 );

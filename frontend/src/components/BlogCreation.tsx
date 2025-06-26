@@ -10,7 +10,7 @@ interface BlogCreationProps {
   onCancelEdit?: () => void;
 }
 
-const backendBaseUrl = '';  // localhost:4000 ni olib tashlang
+const backendBaseUrl = 'http://15.235.141.2:5000';
 const getImageUrl = (url:any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 export const BlogCreation: React.FC<BlogCreationProps> = ({ 

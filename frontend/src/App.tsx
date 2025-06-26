@@ -14,13 +14,18 @@ const backendBaseUrl = '';
 const getImageUrl = (url: any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 function MainDashboard() {
-  const [activeSection, setActiveSection] = useState<'tests' | 'blogs'>('tests');
+  const [activeSection, setActiveSection] = useState<'tests' | 'blogs' | 'topics'>('tests');
   const [tests, setTests] = useState<Test[]>([]);
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [editingTest, setEditingTest] = useState<Test | null>(null);
   const [editingBlog, setEditingBlog] = useState<Blog | null>(null);
   const [viewBlog, setViewBlog] = useState<Blog | null>(null);
+  const [showTopicForm, setShowTopicForm] = useState(false);
+  const [topicTitle, setTopicTitle] = useState('');
+  const [topicDescription, setTopicDescription] = useState('');
+  const [topicSuccess, setTopicSuccess] = useState('');
+  const [topicError, setTopicError] = useState('');
 
   // Fetch tests and blogs from backend on mount
   useEffect(() => {
@@ -119,6 +124,26 @@ function MainDashboard() {
     setViewBlog(blog);
   };
 
+  const handleCreateTopic = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setTopicSuccess('');
+    setTopicError('');
+    try {
+      const res = await fetch(`${baseUri}/tests/topic`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: topicTitle, description: topicDescription })
+      });
+      if (!res.ok) throw new Error('Failed to create topic');
+      setTopicSuccess('Topic created successfully!');
+      setTopicTitle('');
+      setTopicDescription('');
+      setShowTopicForm(false);
+    } catch (err) {
+      setTopicError('Failed to create topic');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Blog view popup */}
@@ -178,7 +203,7 @@ function MainDashboard() {
               />
               <TestList tests={tests} onTestEdit={handleTestEdit} onTestDelete={handleTestDelete} />
             </div>
-          ) : (
+          ) : activeSection === 'blogs' ? (
             <div className="space-y-8">
               <BlogCreation
                 onBlogCreate={handleBlogCreate}
@@ -187,6 +212,38 @@ function MainDashboard() {
                 onCancelEdit={cancelEdit}
               />
               <BlogList blogs={blogs} onBlogEdit={handleBlogEdit} onBlogDelete={handleBlogDelete} onBlogView={handleBlogView} />
+            </div>
+          ) : (
+            <div className="flex flex-col items-center">
+              <form onSubmit={handleCreateTopic} className="mt-4 w-full max-w-md space-y-4 bg-white p-6 rounded-lg shadow">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
+                  <input
+                    type="text"
+                    value={topicTitle}
+                    onChange={e => setTopicTitle(e.target.value)}
+                    className="input-field"
+                    placeholder="Enter topic title"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
+                  <textarea
+                    value={topicDescription}
+                    onChange={e => setTopicDescription(e.target.value)}
+                    className="input-field resize-none"
+                    rows={3}
+                    placeholder="Enter topic description"
+                    required
+                  />
+                </div>
+                <div className="flex justify-end space-x-3">
+                  <button type="submit" className="btn-primary">Create</button>
+                </div>
+                {topicSuccess && <div className="text-green-600 text-sm mt-2">{topicSuccess}</div>}
+                {topicError && <div className="text-red-600 text-sm mt-2">{topicError}</div>}
+              </form>
             </div>
           )}
         </div>

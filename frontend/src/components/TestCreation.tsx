@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Trash2, Check } from 'lucide-react';
-import { Test, TestOption } from '../types';
+import { Test, TestOption, TestTopic } from '../types';
 
 interface TestCreationProps {
   onTestCreate: (test: Omit<Test, 'id' | 'createdAt'>) => void;
@@ -22,11 +22,25 @@ export const TestCreation: React.FC<TestCreationProps> = ({
     { text: '', isCorrect: false },
     { text: '', isCorrect: false }
   ]);
+  const [topics, setTopics] = useState<TestTopic[]>([]);
+  const [selectedTopic, setSelectedTopic] = useState<string>('');
+
+  useEffect(() => {
+    fetch('/api/tests/topics')
+      .then(res => res.json())
+      .then(data => setTopics(data.map((t: any) => ({
+        id: t._id,
+        title: t.title,
+        description: t.description,
+        createdAt: t.createdAt
+      }))));
+  }, []);
 
   useEffect(() => {
     if (editingTest) {
       setQuestion(editingTest.question);
       setOptions(editingTest.options);
+      setSelectedTopic(editingTest.topic || '');
     }
   }, [editingTest]);
 
@@ -65,6 +79,7 @@ export const TestCreation: React.FC<TestCreationProps> = ({
       { text: '', isCorrect: false },
       { text: '', isCorrect: false }
     ]);
+    setSelectedTopic('');
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -72,7 +87,8 @@ export const TestCreation: React.FC<TestCreationProps> = ({
     if (question.trim() && options.every(opt => opt.text.trim()) && options.some(opt => opt.isCorrect)) {
       const testData = {
         question: question.trim(),
-        options: options.filter(opt => opt.text.trim())
+        options: options.filter(opt => opt.text.trim()),
+        topic: selectedTopic || undefined
       };
 
       if (editingTest && onTestUpdate) {
@@ -103,6 +119,24 @@ export const TestCreation: React.FC<TestCreationProps> = ({
         </h2>
         
         <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="topic" className="block text-sm font-medium text-gray-700 mb-2">
+              Topic
+            </label>
+            <select
+              id="topic"
+              value={selectedTopic}
+              onChange={e => setSelectedTopic(e.target.value)}
+              className="input-field"
+              required
+            >
+              <option value="" disabled>Select a topic</option>
+              {topics.map(topic => (
+                <option key={topic.id} value={topic.id}>{topic.title}</option>
+              ))}
+            </select>
+          </div>
+
           <div>
             <label htmlFor="question" className="block text-sm font-medium text-gray-700 mb-2">
               Question

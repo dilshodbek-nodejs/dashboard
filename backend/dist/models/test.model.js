@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TestModel = void 0;
+exports.TestTopicModel = exports.TestModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const TestOptionSchema = new mongoose_1.Schema({
     text: { type: String, required: true },
@@ -42,6 +42,13 @@ const TestOptionSchema = new mongoose_1.Schema({
 const TestSchema = new mongoose_1.Schema({
     question: { type: String, required: true },
     options: { type: [TestOptionSchema], required: true },
+    createdAt: { type: Date, default: Date.now },
+    topic: { type: mongoose_1.Schema.Types.ObjectId, ref: 'TestTopic', required: false }
+});
+const TestTopicSchema = new mongoose_1.Schema({
+    title: { type: String, required: true },
+    description: { type: String, required: true },
     createdAt: { type: Date, default: Date.now }
 });
 exports.TestModel = mongoose_1.default.model('Test', TestSchema);
+exports.TestTopicModel = mongoose_1.default.model('TestTopic', TestTopicSchema);

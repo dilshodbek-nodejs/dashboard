@@ -3,6 +3,7 @@ export interface Test {
   question: string;
   options: TestOption[];
   createdAt: Date;
+  topic?: string;
 }
 
 export interface TestOption {
@@ -25,4 +26,11 @@ export interface ContentBlock {
   type: 'text' | 'image';
   content: string;
   order: number;
+}
+
+export interface TestTopic {
+  id: string;
+  title: string;
+  description: string;
+  createdAt: Date;
 }

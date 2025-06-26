@@ -2,8 +2,8 @@ import React from 'react';
 import { FileText, PenTool, Menu, X } from 'lucide-react';
 
 interface SidebarProps {
-  activeSection: 'tests' | 'blogs';
-  onSectionChange: (section: 'tests' | 'blogs') => void;
+  activeSection: 'tests' | 'blogs' | 'topics';
+  onSectionChange: (section: 'tests' | 'blogs' | 'topics') => void;
   isOpen: boolean;
   onToggle: () => void;
 }
@@ -64,6 +64,21 @@ export const Sidebar: React.FC<SidebarProps> = ({
             >
               <PenTool size={20} />
               <span>Blog Writing</span>
+            </button>
+            
+            <button
+              onClick={() => {
+                onSectionChange('topics');
+                onToggle();
+              }}
+              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg font-medium transition-colors duration-200 ${
+                activeSection === 'topics'
+                  ? 'bg-primary-100 text-primary-700'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+              }`}
+            >
+              <FileText size={20} />
+              <span>Create Topic for Quiz</span>
             </button>
           </nav>
         </div>
