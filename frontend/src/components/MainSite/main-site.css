@@ -41,14 +41,14 @@ section{
   margin-top: 1rem;
   padding:.7rem 3rem;
   border-radius: 5rem;
-  background:var(--red);
-  color:#fff;
+  background:var(--red) !important;
+  color:#fff !important;
   font-size: 2rem;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
 }
 
 .btn:hover{
-  background:#333;
+  background:#333 !important;
 }
 
 .up-and-down::before,
