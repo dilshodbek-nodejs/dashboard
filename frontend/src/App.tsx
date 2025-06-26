@@ -10,7 +10,7 @@ import QuizPage from './components/QuizPage';
 import MainSiteApp from './components/MainSite/MainSiteApp';
 
 const baseUri = '/api';
-const backendBaseUrl = '';
+const backendBaseUrl = 'http://15.235.141.2:5000';
 const getImageUrl = (url: any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 function MainDashboard() {
