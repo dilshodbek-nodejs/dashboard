@@ -13,10 +13,10 @@ export default defineConfig({
         outDir: 'dist',
         assetsDir: 'assets',
         sourcemap: false,
-        minify: 'terser',  // Terser ishlatamiz
+        minify: 'terser',
         terserOptions: {
             compress: {
-                drop_console: true,  // console.log larni olib tashlaydi
+                drop_console: true,
                 drop_debugger: true
             }
         }

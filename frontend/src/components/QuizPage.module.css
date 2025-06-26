@@ -46,10 +46,6 @@
   transform: none;
 }
 
-.quizPageCardLarge {
-  /* For extra scaling if needed */
-}
-
 .quizPageCardHeader {
   width: 100%;
   display: flex;
