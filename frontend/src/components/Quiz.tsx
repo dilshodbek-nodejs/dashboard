@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Test } from '../types';
 
-const baseUri = 'http://localhost:4000/api';
+const baseUri = '/api';
 
 const babyColors = {
   bg: 'bg-pink-50',

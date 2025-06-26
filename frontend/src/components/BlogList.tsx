@@ -10,7 +10,7 @@ interface BlogListProps {
 }
 
 const getImageUrl = (url: string | null) => {
-  const backendBaseUrl = 'http://localhost:4000';
+  const backendBaseUrl = '';  // localhost:4000 ni olib tashlang
   if (!url) return 'https://via.placeholder.com/150'; // Fallback image
   return url.startsWith('http') ? url : backendBaseUrl + url;
 };

@@ -7,6 +7,7 @@ import { BlogList } from './components/BlogList';
 import { Test, Blog } from './types';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import QuizPage from './components/QuizPage';
+import MainSiteApp from './components/MainSite/MainSiteApp';
 
 const baseUri = '/api';
 const backendBaseUrl = '';
@@ -198,20 +199,24 @@ function App() {
   const location = useLocation();
   const isQuizPage = location.pathname === '/quiz';
   return (
-    <div>
-      {/* Only show navbar if not on /quiz */}
-      {!isQuizPage && (
-        <nav className="w-full flex justify-between items-center px-8 py-4 bg-gray-100 border-b border-gray-200">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="font-bold text-lg text-gray-800 hover:underline">Dashboard</Link>
-          </div>
-        </nav>
-      )}
-      <Routes>
-        <Route path="/" element={<MainDashboard />} />
-        <Route path="/quiz" element={<QuizPage />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/admin/*" element={
+        <div>
+          <Routes>
+            <Route path="" element={
+              <div style={{ width: '100vw', overflowX: 'auto', display: 'flex', justifyContent: 'center' }}>
+                <div style={{ transform: 'scale(1.7)', transformOrigin: 'top center', width: '58.8vw' }}>
+                  <MainDashboard />
+                </div>
+              </div>
+            } />
+            <Route path="quiz" element={<QuizPage />} />
+          </Routes>
+        </div>
+      } />
+      <Route path="/quiz" element={<QuizPage />} />
+      <Route path="/*" element={<MainSiteApp />} />
+    </Routes>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styles from './QuizPage.module.css';
 
 const QuizPage: React.FC = () => {
   const [questions, setQuestions] = useState<any[]>([]);
@@ -11,7 +12,7 @@ const QuizPage: React.FC = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:4000/api/tests')
+    fetch('/api/tests')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch questions');
         return res.json();
@@ -60,30 +61,30 @@ const QuizPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div style={backgroundStyle}>
-        <div className="text-2xl text-pink-400 font-bold animate-pulse">Loading questions...</div>
-        <img src="/images/owl-leftside.png" alt="Owl" className="hidden md:block absolute left-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
-        <img src="/images/crocodile-right-side.png" alt="Crocodile" className="hidden md:block absolute right-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
+      <div className={styles.quizPageRoot} style={backgroundStyle}>
+        <div className={styles.quizPageLoadingText}>Loading questions...</div>
+        <img src="/images/about-img.png" alt="Owl" className={styles.quizPageSideImage + ' ' + styles.quizPageOwl} />
+        <img src="/images/contact-img.png" alt="Crocodile" className={styles.quizPageSideImage + ' ' + styles.quizPageCrocodile} />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div style={backgroundStyle}>
-        <div className="text-2xl text-red-400 font-bold">{error}</div>
-        <img src="/images/owl-leftside.png" alt="Owl" className="hidden md:block absolute left-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
-        <img src="/images/crocodile-right-side.png" alt="Crocodile" className="hidden md:block absolute right-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
+      <div className={styles.quizPageRoot} style={backgroundStyle}>
+        <div className={styles.quizPageErrorText}>{error}</div>
+        <img src="/images/about-img.png" alt="Owl" className={styles.quizPageSideImage + ' ' + styles.quizPageOwl} />
+        <img src="/images/contact-img.png" alt="Crocodile" className={styles.quizPageSideImage + ' ' + styles.quizPageCrocodile} />
       </div>
     );
   }
 
   if (!questions.length) {
     return (
-      <div style={backgroundStyle}>
-        <div className="text-2xl text-pink-400 font-bold">No questions found.</div>
-        <img src="/images/owl-leftside.png" alt="Owl" className="hidden md:block absolute left-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
-        <img src="/images/crocodile-right-side.png" alt="Crocodile" className="hidden md:block absolute right-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
+      <div className={styles.quizPageRoot} style={backgroundStyle}>
+        <div className={styles.quizPageNoQuestionsText}>No questions found.</div>
+        <img src="/images/about-img.png" alt="Owl" className={styles.quizPageSideImage + ' ' + styles.quizPageOwl} />
+        <img src="/images/contact-img.png" alt="Crocodile" className={styles.quizPageSideImage + ' ' + styles.quizPageCrocodile} />
       </div>
     );
   }
@@ -121,40 +122,40 @@ const QuizPage: React.FC = () => {
 
   if (showResult) {
     return (
-      <div style={backgroundStyle}>
-        <img src="/images/owl-leftside.png" alt="Owl" className="hidden md:block absolute left-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
-        <img src="/images/crocodile-right-side.png" alt="Crocodile" className="hidden md:block absolute right-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
-        <div className={`w-full max-w-xl rounded-3xl shadow-lg p-8 mt-4 ${cardColor} border-4 border-pink-300 flex flex-col items-center`} style={{zIndex: 2, position: 'relative'}}>
-          <div className="text-5xl mb-4 animate-bounce">🎉</div>
-          <h2 className="text-3xl font-extrabold text-center mb-2 text-pink-500">Quiz Complete!</h2>
-          <div className="text-xl text-center mb-4 text-gray-700 font-bold">You scored {points} out of {questions.length}!</div>
-          <button
-            className="px-8 py-3 rounded-lg border-2 border-pink-300 bg-pink-400 text-white font-bold text-lg mt-4 hover:bg-pink-500 transition"
-            onClick={handleRestart}
-          >
-            Try Again
-          </button>
+      <div className={styles.quizPageRoot} style={backgroundStyle}>
+        <img src="/images/about-img.png" alt="Owl" className={styles.quizPageSideImage + ' ' + styles.quizPageOwl} />
+        <img src="/images/contact-img.png" alt="Crocodile" className={styles.quizPageSideImage + ' ' + styles.quizPageCrocodile} />
+        <div className={styles.quizPageCard + ' ' + styles.quizPageCardLarge}>
+          <div className={styles.quizPageCelebrateIcon}>🎉</div>
+          <h2 className={styles.quizPageTitle}>Quiz Complete!</h2>
+          <div className={styles.quizPageScore}>You scored {points} out of {questions.length}!</div>
+          <button className={styles.quizPageButton} onClick={handleRestart}>Try Again</button>
         </div>
       </div>
     );
   }
 
   return (
-    <div style={backgroundStyle}>
-      <img src="/images/owl-leftside.png" alt="Owl" className="hidden md:block absolute left-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
-      <img src="/images/crocodile-right-side.png" alt="Crocodile" className="hidden md:block absolute right-0 bottom-0 w-40 md:w-60 lg:w-72" style={{zIndex: 1}} />
-      <div className={`w-full max-w-xl rounded-3xl shadow-lg p-8 mt-4 ${cardColor} border-4 border-pink-300`} style={{zIndex: 2, position: 'relative'}}>
-        <div className="flex justify-between mb-4">
-          <div className="text-lg font-bold text-pink-600">Points: {points}</div>
-          <div className="text-pink-400 font-bold">{current + 1} / {questions.length}</div>
+    <div className={styles.quizPageRoot} style={backgroundStyle}>
+      <img src="/images/about-img.png" alt="Owl" className={styles.quizPageSideImage + ' ' + styles.quizPageOwl} />
+      <img src="/images/contact-img.png" alt="Crocodile" className={styles.quizPageSideImage + ' ' + styles.quizPageCrocodile} />
+      <div className={styles.quizPageCard + ' ' + styles.quizPageCardLarge}>
+        <div className={styles.quizPageCardHeader}>
+          <div className={styles.quizPagePoints}>Points: {points}</div>
+          <div className={styles.quizPageProgress}>{current + 1} / {questions.length}</div>
         </div>
-        <h2 className="text-3xl font-extrabold text-center mb-2 text-pink-500">Select Correct Option</h2>
-        <div className="text-xl text-center mb-8 text-gray-700">{q.question}</div>
-        <div className="flex flex-col gap-4 mb-8">
+        <h2 className={styles.quizPageTitle}>Select Correct Option</h2>
+        <div className={styles.quizPageQuestion}>{q.question}</div>
+        <div className={styles.quizPageOptions}>
           {q.options.map((opt: any, idx: number) => (
             <button
               key={idx}
-              className={`${babyButton} ${selected[current] === idx ? babyButtonActive : ''} ${selected[current] !== null && idx === correctIdx && opt.isCorrect ? 'ring-4 ring-green-300' : ''} ${selected[current] !== null && selected[current] === idx && idx !== correctIdx ? 'ring-4 ring-red-300' : ''}`}
+              className={
+                styles.quizPageOptionButton +
+                (selected[current] === idx ? ' ' + styles.quizPageOptionActive : '') +
+                (selected[current] !== null && idx === correctIdx && opt.isCorrect ? ' ' + styles.quizPageOptionCorrect : '') +
+                (selected[current] !== null && selected[current] === idx && idx !== correctIdx ? ' ' + styles.quizPageOptionWrong : '')
+              }
               onClick={() => handleOptionClick(idx)}
               disabled={selected[current] !== null}
             >
@@ -162,16 +163,16 @@ const QuizPage: React.FC = () => {
             </button>
           ))}
         </div>
-        <div className="flex justify-between">
+        <div className={styles.quizPageCardFooter}>
           <button
-            className="px-6 py-2 rounded-lg border-2 border-pink-300 bg-white text-pink-500 font-bold text-lg disabled:opacity-50"
+            className={styles.quizPageNavButton}
             onClick={handlePrev}
             disabled={current === 0}
           >
             Previous
           </button>
           <button
-            className="px-6 py-2 rounded-lg border-2 border-pink-300 bg-pink-400 text-white font-bold text-lg disabled:opacity-50"
+            className={styles.quizPageNavButton + ' ' + styles.quizPageNavButtonPrimary}
             onClick={handleNext}
             disabled={selected[current] === null}
           >

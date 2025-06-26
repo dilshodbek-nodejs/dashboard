@@ -1,0 +1,313 @@
+/* MOBILE-FIRST STYLES */
+.quizPageRoot {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0.5rem 2rem 0.5rem;
+  background: none;
+}
+
+.quizPageSideImage {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  width: 120px;
+  display: none;
+  /* Hide by default (mobile) */
+  opacity: 0.7;
+}
+
+.quizPageOwl {
+  left: 0;
+}
+
+.quizPageCrocodile {
+  right: 0;
+}
+
+.quizPageCard {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+  padding: 1.5rem 1rem;
+  margin: 1.5rem auto 0 auto;
+  background: #fff0f6;
+  border: 3px solid #f472b6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  transform: none;
+}
+
+.quizPageCardLarge {
+  /* For extra scaling if needed */
+}
+
+.quizPageCardHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.quizPagePoints {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #be185d;
+}
+
+.quizPageProgress {
+  color: #f472b6;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.quizPageTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #ec4899;
+}
+
+.quizPageQuestion {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #374151;
+}
+
+.quizPageOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.quizPageOptionButton {
+  width: 100%;
+  min-height: 48px;
+  padding: 1rem 1.2rem;
+  border-radius: 0.75rem;
+  border: 2px solid #f472b6;
+  background: #fff;
+  color: #be185d;
+  font-weight: bold;
+  font-size: 1.15rem;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.quizPageOptionButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.quizPageOptionActive {
+  background: #f472b6;
+  color: #fff;
+}
+
+.quizPageOptionCorrect {
+  box-shadow: 0 0 0 4px #4ade80;
+}
+
+.quizPageOptionWrong {
+  box-shadow: 0 0 0 4px #f87171;
+}
+
+.quizPageCardFooter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.quizPageNavButton {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid #f472b6;
+  background: #fff;
+  color: #ec4899;
+  font-weight: bold;
+  font-size: 1.15rem;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+  margin-bottom: 0.25rem;
+}
+
+.quizPageNavButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quizPageNavButtonPrimary {
+  background: #f472b6;
+  color: #fff;
+}
+
+.quizPageCelebrateIcon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.quizPageButton {
+  width: 100%;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  border: 2px solid #f472b6;
+  background: #f472b6;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.15rem;
+  margin-top: 1rem;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.quizPageButton:hover {
+  background: #ec4899;
+}
+
+.quizPageLoadingText {
+  font-size: 1.5rem;
+  color: #ec4899;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
+  text-align: center;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.quizPageErrorText {
+  font-size: 1.5rem;
+  color: #f87171;
+  font-weight: bold;
+  text-align: center;
+}
+
+.quizPageNoQuestionsText {
+  font-size: 1.5rem;
+  color: #ec4899;
+  font-weight: bold;
+  text-align: center;
+}
+
+.quizPageScore {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #374151;
+  font-weight: bold;
+}
+
+/* RESPONSIVE FOR TABLET & DESKTOP */
+@media (min-width: 640px) {
+  .quizPageRoot {
+    padding: 2rem 1.5rem 2.5rem 1.5rem;
+  }
+
+  .quizPageSideImage {
+    width: 180px;
+    opacity: 1;
+    display: block;
+  }
+
+  .quizPageCard {
+    max-width: 600px;
+    padding: 2.5rem 2rem;
+    margin-top: 2.5rem;
+  }
+
+  .quizPageTitle {
+    font-size: 2rem;
+  }
+
+  .quizPageQuestion {
+    font-size: 1.25rem;
+  }
+
+  .quizPageCardFooter {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .quizPageNavButton {
+    width: auto;
+    min-width: 140px;
+    margin-bottom: 0;
+  }
+
+  .quizPageButton {
+    width: auto;
+    min-width: 180px;
+  }
+
+  .quizPagePoints,
+  .quizPageProgress,
+  .quizPageOptionButton,
+  .quizPageScore,
+  .quizPageLoadingText,
+  .quizPageErrorText,
+  .quizPageNoQuestionsText {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .quizPageSideImage {
+    width: 260px;
+  }
+
+  .quizPageCard {
+    max-width: 900px;
+    padding: 3.5rem 2.5rem;
+    margin-top: 3rem;
+    transform: scale(1.15);
+  }
+
+  .quizPageTitle {
+    font-size: 2.5rem;
+  }
+
+  .quizPageQuestion {
+    font-size: 1.5rem;
+  }
+}
+
+/* This block is not valid in a CSS file and should be removed. */
