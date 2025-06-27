@@ -123,22 +123,20 @@ const Home: React.FC = () => {
                 height: 492,
                 margin: '0 auto',
               }}
-              className="blog-card-custom"
+              className="slider-blog-card"
             >
               {/* Badge */}
-              <div style={{ position: 'absolute', top: 18, left: 18, background: '#f53b57', color: '#fff', fontSize: '1.2rem', fontWeight: 700, padding: '0.35rem 1.2rem', borderRadius: '1.2rem', zIndex: 2, boxShadow: '0 2px 8px rgba(245,59,87,0.10)' }}>
-                Eng ko‘p o‘qilgan
+              <div className="latest-badge">
+                Eng ko'p o'qilgan
               </div>
               <img
                 src={blogs[0].coverImage ? (blogs[0].coverImage.startsWith('http') ? blogs[0].coverImage : backendBaseUrl + blogs[0].coverImage) : '/images/s1.jpg'}
                 alt={blogs[0].title}
-                style={{ width: '100%', height: 295, objectFit: 'cover', borderTopLeftRadius: '1.2rem', borderTopRightRadius: '1.2rem', background: '#f8f8f8' }}
               />
-              <div style={{ padding: '2rem 2rem 2.5rem 2rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
-                <h2 style={{ fontSize: '2.38rem', color: '#f53b57', marginBottom: '1.2rem', fontWeight: 700, lineHeight: 1.2, marginLeft: 15, marginRight: 10 }}>{blogs[0].title}</h2>
-                <h4 style={{ fontSize: '1.74rem', color: '#666', fontWeight: 400, marginBottom: '1.8rem', lineHeight: 1.5, marginLeft: 15, marginRight: 10 }}>
-                  {blogs[0].description.substring(0, 80)}...</h4>
-                <button className="btn-custom" style={{ alignSelf: 'flex-start', marginTop: 'auto' }} onClick={() => setModalBlog(blogs[0])}>Batafsil</button>
+              <div className="content">
+                <h2>{blogs[0].title}</h2>
+                <h4>{blogs[0].description.substring(0, 80)}...</h4>
+                <button className="btn-custom" onClick={() => setModalBlog(blogs[0])}>Batafsil</button>
               </div>
             </div>
           </div>
@@ -172,28 +170,17 @@ const Home: React.FC = () => {
                 style={{
                   minWidth: cardWidth,
                   maxWidth: cardWidth,
-                  background: '#fff',
-                  borderRadius: '1.2rem',
-                  boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
-                  overflow: 'hidden',
-                  border: '1px solid #f3f3f3',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'transform 0.18s, box-shadow 0.18s',
-                  position: 'relative',
-                  height: 492,
                 }}
-                className="blog-card-custom"
+                className="slider-blog-card"
               >
                 <img
                   src={imageUrl}
                   alt={blog.title}
-                  style={{ width: '100%', height: 295, objectFit: 'cover', borderTopLeftRadius: '1.2rem', borderTopRightRadius: '1.2rem', background: '#f8f8f8' }}
                 />
-                <div style={{ padding: '2rem 2rem 2.5rem 2rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
-                  <h2 style={{ fontSize: '2.38rem', color: '#f53b57', marginBottom: '1.2rem', fontWeight: 700, lineHeight: 1.2, marginLeft: 15, marginRight: 10 }}>{blog.title}</h2>
-                  <h4 style={{ fontSize: '1.74rem', color: '#666', fontWeight: 400, marginBottom: '1.8rem', lineHeight: 1.5, marginLeft: 15, marginRight: 10 }}>{blog.description.substring(0, 80)}...</h4>
-                  <button className="btn-custom" style={{ alignSelf: 'flex-start', marginTop: 'auto' }} onClick={() => setModalBlog(blog)}>Batafsil</button>
+                <div className="content">
+                  <h2>{blog.title}</h2>
+                  <h4>{blog.description.substring(0, 80)}...</h4>
+                  <button className="btn-custom" onClick={() => setModalBlog(blog)}>Batafsil</button>
                 </div>
               </div>
             );

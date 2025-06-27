@@ -675,7 +675,7 @@ header .navbar a:hover{
   gap: 2.25rem;
   justify-items: center;
   align-items: stretch;
-  margin-top: 4rem;
+  margin-top: 2rem;
   max-width: 98%;
   margin-left: auto;
   margin-right: auto;
@@ -835,4 +835,100 @@ header .navbar a:hover{
   align-items: center;
   gap: 1.5rem;
   margin-top: 1rem;
+}
+
+/* Slider Blog Cards - Separate from main blog cards */
+.slider-blog-card {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+  border: 1px solid #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s, box-shadow 0.18s;
+  position: relative;
+  height: 492px;
+  font-family: cursive !important;
+}
+
+.slider-blog-card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 12px 36px rgba(245,59,87,0.13);
+}
+
+.slider-blog-card img {
+  width: 100%;
+  height: 295px;
+  object-fit: cover;
+  border-top-left-radius: 1.2rem;
+  border-top-right-radius: 1.2rem;
+  background: #f8f8f8;
+}
+
+.slider-blog-card .content {
+  padding: 2rem 2rem 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  font-family: cursive !important;
+}
+
+.slider-blog-card .content h2 {
+  font-size: 2.38rem;
+  color: #f53b57;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-left: 15px;
+  margin-right: 10px;
+  font-family: cursive !important;
+}
+
+.slider-blog-card .content h4 {
+  font-size: 1.74rem;
+  color: #666;
+  font-weight: 400;
+  margin-bottom: 1.8rem;
+  line-height: 1.5;
+  margin-left: 15px;
+  margin-right: 10px;
+  font-family: cursive !important;
+}
+
+.slider-blog-card .btn-custom {
+  display: inline-block;
+  background: #f53b57;
+  color: #fff;
+  border-radius: 2rem;
+  padding: 0.7rem 2.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  margin-top: auto;
+  transition: background 0.18s;
+  box-shadow: 0 2px 8px rgba(245,59,87,0.08);
+  align-self: flex-start;
+  font-family: cursive !important;
+}
+
+.slider-blog-card .btn-custom:hover {
+  background: #c82333;
+}
+
+.slider-blog-card .latest-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: #f53b57;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.35rem 1.2rem;
+  border-radius: 1.2rem;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(245,59,87,0.10);
+  font-family: cursive !important;
 }
