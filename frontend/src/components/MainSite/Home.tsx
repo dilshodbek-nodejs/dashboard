@@ -136,7 +136,8 @@ const Home: React.FC = () => {
               />
               <div style={{ padding: '2rem 2rem 2.5rem 2rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
                 <h2 style={{ fontSize: '2.38rem', color: '#f53b57', marginBottom: '1.2rem', fontWeight: 700, lineHeight: 1.2, marginLeft: 15, marginRight: 10 }}>{blogs[0].title}</h2>
-                <h4 style={{ fontSize: '1.74rem', color: '#666', fontWeight: 400, marginBottom: '1.8rem', lineHeight: 1.5, marginLeft: 15, marginRight: 10 }}>{blogs[0].description.substring(0, 80)}...</h4>
+                <h4 style={{ fontSize: '1.74rem', color: '#666', fontWeight: 400, marginBottom: '1.8rem', lineHeight: 1.5, marginLeft: 15, marginRight: 10 }}>
+                  {blogs[0].description.substring(0, 80)}...</h4>
                 <button className="btn-custom" style={{ alignSelf: 'flex-start', marginTop: 'auto' }} onClick={() => setModalBlog(blogs[0])}>Batafsil</button>
               </div>
             </div>

@@ -5,7 +5,7 @@
 *{
   margin:0; padding:0;
   box-sizing: border-box;
-  font-family: cursive;
+  font-family: cursive !important;
   text-transform: capitalize;
   text-decoration: none;
   outline:none; border:none;
@@ -21,6 +21,11 @@ html{
   font-size: 62.5%;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  font-family: cursive !important;
+}
+
+body {
+  font-family: cursive !important;
 }
 
 section{
@@ -28,6 +33,7 @@ section{
   padding:0 7%;
   padding-top: 11rem;
   padding-bottom: 9rem;
+  font-family: cursive !important;
 }
 
 .background{
@@ -45,6 +51,7 @@ section{
   color:#fff !important;
   font-size: 2rem;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+  font-family: cursive !important;
 }
 
 .btn:hover{
@@ -77,6 +84,7 @@ section{
   color:var(--red);
   padding:1rem;
   font-size: 3.5rem;
+  font-family: cursive !important;
 }
 
 header{
@@ -91,6 +99,7 @@ header{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: cursive !important;
 }
 
 header .logo img{
@@ -100,12 +109,14 @@ header .logo img{
 header .logo i{
   padding-right: .5rem;
   color:var(--red);
+  font-family: cursive !important;
 }
 
 header .navbar a{
   font-size: 2rem;
   margin-left: 2rem;
   color:#333;
+  font-family: cursive !important;
 }
 
 header .navbar a:hover{
@@ -120,27 +131,32 @@ header .navbar a:hover{
   cursor: pointer;
   border-radius: .5rem;
   display: none;
+  font-family: cursive !important;
 }
 
 .home{
   display: flex;
   align-items: center;
+  font-family: cursive !important;
 }
 
 .home .content h1{
   font-size: 5rem;
   color:var(--red);
+  font-family: cursive !important;
 }
 
 .home .content h3{
   font-size: 3rem;
   color:#333;
+  font-family: cursive !important;
 }
 
 .home .content p{
   font-size: 1.7rem;
   color:#666;
   padding:1rem 0;
+  font-family: cursive !important;
 }
 
 .home .image img{
@@ -152,6 +168,7 @@ header .navbar a:hover{
 .features{
   display: flex;
   position: relative;
+  font-family: cursive !important;
 }
 
 .features .stick{
@@ -162,12 +179,14 @@ header .navbar a:hover{
   font-size: 3rem;
   color:var(--red);
   padding:2rem;
+  font-family: cursive !important;
 }
 
 .features .box-container .box{
   display: flex;
   align-items: center;
   padding:1rem 0;
+  font-family: cursive !important;
 }
 
 .features .box-container .box img{
@@ -179,11 +198,13 @@ header .navbar a:hover{
 .features .box-container .box .info h3{
   font-size: 2.5rem;
   color:#333;
+  font-family: cursive !important;
 }
 
 .features .box-container .box .info p{
   font-size: 1.7rem;
   color:#666;
+  font-family: cursive !important;
 }
 
 .features .box-container:first-child .box{
@@ -423,15 +444,17 @@ header .navbar a:hover{
 }
 
 .contact .row .contact-info .box .title{
-  padding:1rem 0;
-  font-size: 3rem;
-  color:#333;
+  font-size: 2.5rem;
+  color:var(--red);
+  padding-bottom: 1rem;
+  font-family: cursive !important;
 }
 
 .contact .row .contact-info .box p{
   font-size: 1.7rem;
-  padding:.5rem 0;
   color:#666;
+  padding:1rem 0;
+  font-family: cursive !important;
 }
 
 .contact .row .contact-info .box p i{
@@ -465,12 +488,14 @@ header .navbar a:hover{
   border-radius: 5rem;
   border:.1rem solid rgba(0,0,0,.3);
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+  font-family: cursive !important;
 }
 
 .contact .row .contact-form h3{
   font-size: 3rem;
   color:#333;
   padding-bottom: 1rem;
+  font-family: cursive !important;
 }
 
 .contact .row .contact-form .box{
@@ -483,6 +508,7 @@ header .navbar a:hover{
   border:.1rem solid rgba(0,0,0,.3);
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
   text-transform: none;
+  font-family: cursive !important;
 }
 
 .contact .row .contact-form .message{
@@ -518,17 +544,20 @@ header .navbar a:hover{
 
   html{
     font-size: 55%;
+    font-family: cursive !important;
   }
 
   header{
     padding:1.5rem 3%;
     padding-bottom: 6rem;
+    font-family: cursive !important;
   }
 
   section{
     padding:0 3%;
     padding-top: 11rem;
     padding-bottom: 9rem;
+    font-family: cursive !important;
   }
 
 }
@@ -537,6 +566,7 @@ header .navbar a:hover{
 
   #menu-bars{
     display: block;
+    font-family: cursive !important;
   }
 
   header .navbar{
@@ -547,6 +577,7 @@ header .navbar a:hover{
     background-position: center;
     border-top: .1rem solid #333;
     padding:2rem;
+    font-family: cursive !important;
   }
 
   header .navbar.active{
@@ -559,6 +590,7 @@ header .navbar a:hover{
     font-size: 2.5rem;
     margin:2rem 0;
     text-align: center;
+    font-family: cursive !important;
   }
 
   .home .image img{
@@ -567,22 +599,27 @@ header .navbar a:hover{
 
   .home .content{
     text-align: center;
+    font-family: cursive !important;
   }
 
   .home .content h1{
     font-size: 3.5rem;
+    font-family: cursive !important;
   }
 
   .home .content h3{
     font-size: 2.5rem;
+    font-family: cursive !important;
   }
 
   .home .content p{
     font-size: 1.5rem;
+    font-family: cursive !important;
   }
 
   .features{
     flex-flow: column;
+    font-family: cursive !important;
   }
 
   .features .stick{
@@ -595,6 +632,7 @@ header .navbar a:hover{
 
   .about .content{
     text-align: center;
+    font-family: cursive !important;
   }
 
   .contact .image img{
@@ -604,6 +642,7 @@ header .navbar a:hover{
   .contact .row{
     flex-flow:column;
     align-items: flex-start;
+    font-family: cursive !important;
   }
 
 }
@@ -612,16 +651,19 @@ header .navbar a:hover{
 
   html{
     font-size: 50%;
+    font-family: cursive !important;
   }
 
   .features .box-container,
   .features .box-container:first-child{
     text-align: center;
+    font-family: cursive !important;
   }
 
   .features .box-container .box,
   .features .box-container:first-child .box{
     flex-flow: column;
+    font-family: cursive !important;
   }
 
 }
@@ -652,6 +694,7 @@ header .navbar a:hover{
   transition: transform 0.18s, box-shadow 0.18s;
   border: 1px solid #f3f3f3;
   position: relative;
+  font-family: cursive !important;
 }
 .blog-card-custom:hover {
   transform: translateY(-6px) scale(1.03);
@@ -670,6 +713,7 @@ header .navbar a:hover{
   flex-direction: column;
   flex: 1;
   justify-content: space-between;
+  font-family: cursive !important;
 }
 .blog-card-custom .content h2 {
   font-size: 1.575rem;
@@ -677,6 +721,7 @@ header .navbar a:hover{
   margin-bottom: 0.525rem;
   font-weight: 700;
   line-height: 1.2;
+  font-family: cursive !important;
 }
 .blog-card-custom .content h4 {
   font-size: 1.05rem;
@@ -684,6 +729,7 @@ header .navbar a:hover{
   font-weight: 400;
   margin-bottom: 0.975rem;
   line-height: 1.5;
+  font-family: cursive !important;
 }
 .blog-card-custom .btn-custom {
   display: inline-block;
@@ -698,6 +744,7 @@ header .navbar a:hover{
   margin-top: auto;
   transition: background 0.18s;
   box-shadow: 0 1.5px 6px rgba(245,59,87,0.08);
+  font-family: cursive !important;
 }
 .blog-card-custom .btn-custom:hover {
   background: #c82333;
@@ -714,43 +761,52 @@ header .navbar a:hover{
   border-radius: 0.9rem;
   z-index: 2;
   box-shadow: 0 1.5px 6px rgba(245,59,87,0.10);
+  font-family: cursive !important;
 }
 
 @media (max-width: 900px) {
   .blogs.background {
     padding-left: 1% !important;
     padding-right: 1% !important;
+    font-family: cursive !important;
   }
   
   .box-container#blog-posts-container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
     max-width: 99%;
+    font-family: cursive !important;
   }
   .blog-card-custom {
     max-width: 98vw;
+    font-family: cursive !important;
   }
   .blog-card-custom img {
     height: 135px;
   }
   .blog-card-custom .content {
     padding: 0.9rem 0.975rem 1.125rem 0.975rem;
+    font-family: cursive !important;
   }
   .blog-card-custom .content h2 {
     font-size: 1.0125rem;
+    font-family: cursive !important;
   }
   .blog-card-custom .content h4 {
     font-size: 0.75rem;
+    font-family: cursive !important;
   }
   .blog-card-custom .btn-custom {
     font-size: 0.75rem;
     padding: 0.375rem 1.125rem;
+    font-family: cursive !important;
   }
   .latest-badge {
     font-size: 0.6375rem;
     padding: 0.1875rem 0.675rem;
     top: 9px;
     left: 9px;
+    font-family: cursive !important;
   }
 }
 
