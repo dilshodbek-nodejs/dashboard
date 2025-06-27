@@ -98,7 +98,7 @@ const Home: React.FC = () => {
   // ===== MOBILE VERSION CODE END =====
 
   return (
-    <section className="home background" id="home" style={{ paddingTop: '4rem', paddingBottom: '4rem', marginTop: '20%' }}>
+    <section className="home background" id="home" style={{ paddingTop: '4rem', paddingBottom: '4rem', marginTop: '8%' }}>
       <h1 className="heading hidden sm:block" style={{ marginBottom: '2rem' }}>So‘nggi bloglar</h1>
       {loading ? (
         <div style={{ textAlign: 'center', color: '#f53b57', fontSize: '2rem' }}>Yuklanmoqda...</div>
