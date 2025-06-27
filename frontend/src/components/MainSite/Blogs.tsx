@@ -13,7 +13,7 @@ const Blogs: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showAll, setShowAll] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(3);
   const [modalBlog, setModalBlog] = useState<Blog | null>(null);
 
   useEffect(() => {
@@ -34,14 +34,18 @@ const Blogs: React.FC = () => {
   }, []);
 
   const backendBaseUrl = '';
-  const visibleBlogs = showAll ? blogs : blogs.slice(0, 6);
+  const visibleBlogs = blogs.slice(0, visibleCount);
+
+  const handleShowMore = () => {
+    setVisibleCount(prev => prev + 3);
+  };
 
   return (
     <section className="blogs background" id="blogs">
-      <h1 className="heading">So'nggi bloglarimiz</h1>
+      <h1 className="heading">Eng ko'p o'qilgan bloglar</h1>
       <div className="box-container" id="blog-posts-container">
         {loading && (
-          Array.from({ length: 6 }).map((_, i) => (
+          Array.from({ length: 3 }).map((_, i) => (
             <div className="blog-card-custom" key={i}>
               <div style={{ height: 450, background: '#fdf0f5', animation: 'pulse 1.5s infinite ease-in-out' }}></div>
             </div>
@@ -59,9 +63,9 @@ const Blogs: React.FC = () => {
             : '/images/s1.jpg';
           return (
             <div className="blog-card-custom" key={blog._id}>
-              {index === 0 && !showAll && (
+              {index === 0 && visibleCount === 3 && (
                 <div className="latest-badge">
-                  <span>So'nggi</span>
+                  <span>Eng ko'p o'qilgan</span>
                 </div>
               )}
               <img src={imageUrl} alt={blog.title} />
@@ -76,7 +80,7 @@ const Blogs: React.FC = () => {
           );
         })}
       </div>
-      {!showAll && blogs.length > 6 && !loading && !error && (
+      {visibleCount < blogs.length && !loading && !error && (
         <div style={{ textAlign: 'center', marginTop: '2rem' }}>
           <button
             className="creative-read-more-btn"
@@ -100,9 +104,9 @@ const Blogs: React.FC = () => {
             }}
             onMouseOver={e => { e.currentTarget.style.transform = 'scale(1.04)'; e.currentTarget.style.boxShadow = '0 8px 32px rgba(245,59,87,0.18)'; }}
             onMouseOut={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(245,59,87,0.10)'; }}
-            onClick={() => setShowAll(true)}
+            onClick={handleShowMore}
           >
-            Read More
+            Ko'proq
           </button>
         </div>
       )}

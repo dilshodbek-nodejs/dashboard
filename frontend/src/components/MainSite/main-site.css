@@ -626,22 +626,25 @@ header .navbar a:hover{
 
 }
 
-/* Blog Cards Modern Redesign - Larger Size */
+/* Blog Cards Modern Redesign - Smaller Size */
 .box-container#blog-posts-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(337px, 1fr));
+  gap: 2.25rem;
   justify-items: center;
   align-items: stretch;
   margin-top: 2rem;
+  max-width: 93%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .blog-card-custom {
   background: #fff;
-  border-radius: 1.2rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border-radius: 0.9rem;
+  box-shadow: 0 3px 18px rgba(0,0,0,0.08);
   overflow: hidden;
-  max-width: 540px;
+  max-width: 405px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -650,97 +653,98 @@ header .navbar a:hover{
   position: relative;
 }
 .blog-card-custom:hover {
-  transform: translateY(-8px) scale(1.04);
-  box-shadow: 0 12px 36px rgba(245,59,87,0.13);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 9px 27px rgba(245,59,87,0.13);
 }
 .blog-card-custom img {
   width: 100%;
-  height: 290px;
+  height: 217px;
   object-fit: cover;
-  border-top-left-radius: 1.2rem;
-  border-top-right-radius: 1.2rem;
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
 }
 .blog-card-custom .content {
-  padding: 2rem 2.2rem 2.5rem 2.2rem;
+  padding: 1.5rem 1.65rem 1.875rem 1.65rem;
   display: flex;
   flex-direction: column;
   flex: 1;
   justify-content: space-between;
 }
 .blog-card-custom .content h2 {
-  font-size: 2.1rem;
+  font-size: 1.575rem;
   color: #f53b57;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.525rem;
   font-weight: 700;
   line-height: 1.2;
 }
 .blog-card-custom .content h4 {
-  font-size: 1.4rem;
+  font-size: 1.05rem;
   color: #666;
   font-weight: 400;
-  margin-bottom: 1.3rem;
+  margin-bottom: 0.975rem;
   line-height: 1.5;
 }
 .blog-card-custom .btn-custom {
   display: inline-block;
   background: #f53b57;
   color: #fff;
-  border-radius: 2rem;
-  padding: 0.7rem 2.2rem;
-  font-size: 1.2rem;
+  border-radius: 1.5rem;
+  padding: 0.525rem 1.65rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
   margin-top: auto;
   transition: background 0.18s;
-  box-shadow: 0 2px 8px rgba(245,59,87,0.08);
+  box-shadow: 0 1.5px 6px rgba(245,59,87,0.08);
 }
 .blog-card-custom .btn-custom:hover {
   background: #c82333;
 }
 .latest-badge {
   position: absolute;
-  top: 18px;
-  left: 18px;
+  top: 13.5px;
+  left: 13.5px;
   background: #f53b57;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  padding: 0.35rem 1.2rem;
-  border-radius: 1.2rem;
+  padding: 0.2625rem 0.9rem;
+  border-radius: 0.9rem;
   z-index: 2;
-  box-shadow: 0 2px 8px rgba(245,59,87,0.10);
+  box-shadow: 0 1.5px 6px rgba(245,59,87,0.10);
 }
 
 @media (max-width: 900px) {
   .box-container#blog-posts-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+    max-width: 95%;
   }
   .blog-card-custom {
     max-width: 98vw;
   }
   .blog-card-custom img {
-    height: 180px;
+    height: 135px;
   }
   .blog-card-custom .content {
-    padding: 1.2rem 1.3rem 1.5rem 1.3rem;
+    padding: 0.9rem 0.975rem 1.125rem 0.975rem;
   }
   .blog-card-custom .content h2 {
-    font-size: 1.35rem;
+    font-size: 1.0125rem;
   }
   .blog-card-custom .content h4 {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
   .blog-card-custom .btn-custom {
-    font-size: 1rem;
-    padding: 0.5rem 1.5rem;
+    font-size: 0.75rem;
+    padding: 0.375rem 1.125rem;
   }
   .latest-badge {
-    font-size: 0.85rem;
-    padding: 0.25rem 0.9rem;
-    top: 12px;
-    left: 12px;
+    font-size: 0.6375rem;
+    padding: 0.1875rem 0.675rem;
+    top: 9px;
+    left: 9px;
   }
 }
 
@@ -750,6 +754,8 @@ header .navbar a:hover{
   background-position: center;
   padding-top: 3.3rem !important;
   padding-bottom: 2.7rem !important;
+  padding-left: 7% !important;
+  padding-right: 7% !important;
 }
 
 /* Override circular background for social media icons */
