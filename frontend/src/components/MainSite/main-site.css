@@ -671,8 +671,8 @@ header .navbar a:hover{
 /* Blog Cards Modern Redesign - Smaller Size */
 .box-container#blog-posts-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
-  gap: 2.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
   justify-items: center;
   align-items: stretch;
   margin-top: 2rem;
@@ -684,10 +684,10 @@ header .navbar a:hover{
 
 .blog-card-custom {
   background: #fff;
-  border-radius: 0.9rem;
-  box-shadow: 0 3px 18px rgba(0,0,0,0.08);
+  border-radius: 0.8rem;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.08);
   overflow: hidden;
-  max-width: 405px;
+  max-width: 380px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -697,18 +697,18 @@ header .navbar a:hover{
   font-family: cursive !important;
 }
 .blog-card-custom:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 9px 27px rgba(245,59,87,0.13);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(245,59,87,0.13);
 }
 .blog-card-custom img {
   width: 100%;
-  height: 217px;
+  height: 200px;
   object-fit: cover;
-  border-top-left-radius: 0.9rem;
-  border-top-right-radius: 0.9rem;
+  border-top-left-radius: 0.8rem;
+  border-top-right-radius: 0.8rem;
 }
 .blog-card-custom .content {
-  padding: 1.5rem 1.65rem 1.875rem 1.65rem;
+  padding: 1.25rem 1.5rem 1.75rem 1.5rem;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -716,18 +716,18 @@ header .navbar a:hover{
   font-family: cursive !important;
 }
 .blog-card-custom .content h2 {
-  font-size: 1.575rem;
+  font-size: 1.4rem;
   color: #f53b57;
-  margin-bottom: 0.525rem;
+  margin-bottom: 0.5rem;
   font-weight: 700;
   line-height: 1.2;
   font-family: cursive !important;
 }
 .blog-card-custom .content h4 {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: #666;
   font-weight: 400;
-  margin-bottom: 0.975rem;
+  margin-bottom: 0.875rem;
   line-height: 1.5;
   font-family: cursive !important;
 }
@@ -735,9 +735,9 @@ header .navbar a:hover{
   display: inline-block;
   background: #f53b57;
   color: #fff;
-  border-radius: 1.5rem;
-  padding: 0.525rem 1.65rem;
-  font-size: 0.9rem;
+  border-radius: 1.25rem;
+  padding: 0.45rem 1.5rem;
+  font-size: 0.85rem;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
@@ -751,17 +751,50 @@ header .navbar a:hover{
 }
 .latest-badge {
   position: absolute;
-  top: 13.5px;
-  left: 13.5px;
+  top: 12px;
+  left: 12px;
   background: #f53b57;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  padding: 0.2625rem 0.9rem;
-  border-radius: 0.9rem;
+  padding: 0.225rem 0.8rem;
+  border-radius: 0.8rem;
   z-index: 2;
   box-shadow: 0 1.5px 6px rgba(245,59,87,0.10);
   font-family: cursive !important;
+}
+
+@media (max-width: 1400px) {
+  .box-container#blog-posts-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .blog-card-custom {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .box-container#blog-posts-container {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  
+  .blog-card-custom {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .box-container#blog-posts-container {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  
+  .blog-card-custom {
+    max-width: 300px;
+  }
 }
 
 @media (max-width: 900px) {
