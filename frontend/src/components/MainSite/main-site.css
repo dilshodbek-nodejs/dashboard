@@ -668,7 +668,7 @@ header .navbar a:hover{
 
 }
 
-/* Blog Cards Modern Redesign - Smaller Size */
+/* Blog Cards Modern Redesign - Smaller Size for Slider */
 .box-container#blog-posts-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(253px, 1fr));
@@ -680,6 +680,7 @@ header .navbar a:hover{
   margin-left: auto;
   margin-right: auto;
   overflow: visible;
+  font-family: cursive !important;
 }
 
 .blog-card-custom {
@@ -716,18 +717,18 @@ header .navbar a:hover{
   font-family: cursive !important;
 }
 .blog-card-custom .content h2 {
-  font-size: 1.18125rem;
+  font-size: 1.575rem;
   color: #f53b57;
-  margin-bottom: 0.39375rem;
+  margin-bottom: 0.525rem;
   font-weight: 700;
   line-height: 1.2;
   font-family: cursive !important;
 }
 .blog-card-custom .content h4 {
-  font-size: 0.7875rem;
+  font-size: 1.05rem;
   color: #666;
   font-weight: 400;
-  margin-bottom: 0.73125rem;
+  margin-bottom: 0.975rem;
   line-height: 1.5;
   font-family: cursive !important;
 }
@@ -737,7 +738,7 @@ header .navbar a:hover{
   color: #fff;
   border-radius: 1.125rem;
   padding: 0.39375rem 1.2375rem;
-  font-size: 0.675rem;
+  font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
@@ -755,7 +756,7 @@ header .navbar a:hover{
   left: 10.125px;
   background: #f53b57;
   color: #fff;
-  font-size: 0.675rem;
+  font-size: 0.9rem;
   font-weight: 700;
   padding: 0.196875rem 0.675rem;
   border-radius: 0.675rem;
@@ -789,20 +790,20 @@ header .navbar a:hover{
     font-family: cursive !important;
   }
   .blog-card-custom .content h2 {
-    font-size: 0.759375rem;
+    font-size: 1.0125rem;
     font-family: cursive !important;
   }
   .blog-card-custom .content h4 {
-    font-size: 0.5625rem;
+    font-size: 0.75rem;
     font-family: cursive !important;
   }
   .blog-card-custom .btn-custom {
-    font-size: 0.5625rem;
+    font-size: 0.75rem;
     padding: 0.28125rem 0.84375rem;
     font-family: cursive !important;
   }
   .latest-badge {
-    font-size: 0.478125rem;
+    font-size: 0.6375rem;
     padding: 0.140625rem 0.50625rem;
     top: 6.75px;
     left: 6.75px;
