@@ -96,9 +96,11 @@ const BlogPage: React.FC = () => {
               <div className="prose max-w-none">
                 {selectedBlog.content.map(block =>
                   block.type === 'text' ? (
-                    <p key={block.id} className="text-base text-gray-800 leading-relaxed mb-4">
-                      {block.content}
-                    </p>
+                    <div 
+                      key={block.id} 
+                      className="blog-content"
+                      dangerouslySetInnerHTML={{ __html: block.content }}
+                    />
                   ) : (
                     <img 
                       key={block.id} 
