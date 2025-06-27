@@ -634,9 +634,10 @@ header .navbar a:hover{
   justify-items: center;
   align-items: stretch;
   margin-top: 2rem;
-  max-width: 93%;
+  max-width: 98%;
   margin-left: auto;
   margin-right: auto;
+  overflow: visible;
 }
 
 .blog-card-custom {
@@ -716,10 +717,15 @@ header .navbar a:hover{
 }
 
 @media (max-width: 900px) {
+  .blogs.background {
+    padding-left: 1% !important;
+    padding-right: 1% !important;
+  }
+  
   .box-container#blog-posts-container {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    max-width: 95%;
+    max-width: 99%;
   }
   .blog-card-custom {
     max-width: 98vw;
@@ -746,16 +752,6 @@ header .navbar a:hover{
     top: 9px;
     left: 9px;
   }
-}
-
-.blogs.background {
-  background: url(/images/background.png) no-repeat;
-  background-size: cover;
-  background-position: center;
-  padding-top: 3.3rem !important;
-  padding-bottom: 2.7rem !important;
-  padding-left: 7% !important;
-  padding-right: 7% !important;
 }
 
 /* Override circular background for social media icons */
