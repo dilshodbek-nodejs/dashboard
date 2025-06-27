@@ -162,7 +162,7 @@ const Home: React.FC = () => {
               : '/images/s1.jpg';
             // ===== MOBILE VERSION CODE START =====
             // Responsive card width for mobile
-            const cardWidth = windowWidth < 768 ? '98vw' : 568;
+            const cardWidth = windowWidth < 768 ? '98vw' : 568 * 0.8; // Reduced by 20% for desktop slider cards only
             // ===== MOBILE VERSION CODE END =====
             return (
               <div
