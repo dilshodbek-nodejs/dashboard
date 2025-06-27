@@ -8,6 +8,7 @@ import { Test, Blog } from './types';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import QuizPage from './components/QuizPage';
 import MainSiteApp from './components/MainSite/MainSiteApp';
+import BlogPage from './components/MainSite/BlogPage';
 
 const baseUri = '/api';
 const backendBaseUrl = '';
@@ -272,6 +273,7 @@ function App() {
         </div>
       } />
       <Route path="/quiz" element={<QuizPage />} />
+      <Route path="/blog" element={<BlogPage />} />
       <Route path="/*" element={<MainSiteApp />} />
     </Routes>
   );

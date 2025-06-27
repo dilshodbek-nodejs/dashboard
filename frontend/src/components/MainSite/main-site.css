@@ -751,3 +751,30 @@ header .navbar a:hover{
   padding-top: 3.3rem !important;
   padding-bottom: 2.7rem !important;
 }
+
+/* Override circular background for social media icons */
+.contact .row .contact-info .box .social-icon-link {
+  height: auto !important;
+  width: auto !important;
+  line-height: normal !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background: none !important;
+  margin: 0 !important;
+  text-align: left !important;
+  display: inline-block !important;
+}
+
+.contact .row .contact-info .box .social-icon-link:hover {
+  background: none !important;
+  border: none !important;
+  color: inherit !important;
+}
+
+/* Social icons container styling */
+.contact .row .contact-info .box .social-icons-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}

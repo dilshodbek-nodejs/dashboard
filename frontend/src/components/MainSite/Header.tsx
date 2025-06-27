@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const [menuActive, setMenuActive] = useState(false);
@@ -32,11 +33,11 @@ const Header: React.FC = () => {
       ></div>
       <nav className={`navbar${menuActive ? ' active' : ''}`}>
         <a href="#home" onClick={handleNavClick}>Bosh sahifa</a>
-        <a href="#features" onClick={handleNavClick}>Tarbiya uchun</a>
+        <a href="#features" onClick={handleNavClick}>Nega biz?</a>
         <a href="#about" onClick={handleNavClick}>O'yinlar</a>
         <a href="#services" onClick={handleNavClick}>Fanlar</a>
         <a href="/quiz" onClick={handleNavClick}>Testlar</a>
-        <a href="#pricing" onClick={handleNavClick}>Galereya</a>
+        <Link to="/blog" onClick={handleNavClick}>Tarbiya uchun</Link>
         <a href="#contact" onClick={handleNavClick}>Aloqa</a>
       </nav>
     </header>
