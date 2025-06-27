@@ -668,11 +668,11 @@ header .navbar a:hover{
 
 }
 
-/* Blog Cards Modern Redesign - Smaller Size for Slider */
+/* Blog Cards Modern Redesign - Smaller Size */
 .box-container#blog-posts-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(253px, 1fr));
-  gap: 1.69rem;
+  grid-template-columns: repeat(auto-fit, minmax(337px, 1fr));
+  gap: 2.25rem;
   justify-items: center;
   align-items: stretch;
   margin-top: 2rem;
@@ -680,15 +680,14 @@ header .navbar a:hover{
   margin-left: auto;
   margin-right: auto;
   overflow: visible;
-  font-family: cursive !important;
 }
 
 .blog-card-custom {
   background: #fff;
-  border-radius: 0.675rem;
-  box-shadow: 0 2.25px 13.5px rgba(0,0,0,0.08);
+  border-radius: 0.9rem;
+  box-shadow: 0 3px 18px rgba(0,0,0,0.08);
   overflow: hidden;
-  max-width: 304px;
+  max-width: 405px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -698,18 +697,18 @@ header .navbar a:hover{
   font-family: cursive !important;
 }
 .blog-card-custom:hover {
-  transform: translateY(-4.5px) scale(1.0225);
-  box-shadow: 0 6.75px 20.25px rgba(245,59,87,0.13);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 9px 27px rgba(245,59,87,0.13);
 }
 .blog-card-custom img {
   width: 100%;
-  height: 163px;
+  height: 217px;
   object-fit: cover;
-  border-top-left-radius: 0.675rem;
-  border-top-right-radius: 0.675rem;
+  border-top-left-radius: 0.9rem;
+  border-top-right-radius: 0.9rem;
 }
 .blog-card-custom .content {
-  padding: 1.125rem 1.2375rem 1.40625rem 1.2375rem;
+  padding: 1.5rem 1.65rem 1.875rem 1.65rem;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -736,15 +735,15 @@ header .navbar a:hover{
   display: inline-block;
   background: #f53b57;
   color: #fff;
-  border-radius: 1.125rem;
-  padding: 0.39375rem 1.2375rem;
+  border-radius: 1.5rem;
+  padding: 0.525rem 1.65rem;
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
   margin-top: auto;
   transition: background 0.18s;
-  box-shadow: 0 1.125px 4.5px rgba(245,59,87,0.08);
+  box-shadow: 0 1.5px 6px rgba(245,59,87,0.08);
   font-family: cursive !important;
 }
 .blog-card-custom .btn-custom:hover {
@@ -752,16 +751,16 @@ header .navbar a:hover{
 }
 .latest-badge {
   position: absolute;
-  top: 10.125px;
-  left: 10.125px;
+  top: 13.5px;
+  left: 13.5px;
   background: #f53b57;
   color: #fff;
   font-size: 0.9rem;
   font-weight: 700;
-  padding: 0.196875rem 0.675rem;
-  border-radius: 0.675rem;
+  padding: 0.2625rem 0.9rem;
+  border-radius: 0.9rem;
   z-index: 2;
-  box-shadow: 0 1.125px 4.5px rgba(245,59,87,0.10);
+  box-shadow: 0 1.5px 6px rgba(245,59,87,0.10);
   font-family: cursive !important;
 }
 
@@ -774,7 +773,7 @@ header .navbar a:hover{
   
   .box-container#blog-posts-container {
     grid-template-columns: 1fr;
-    gap: 1.125rem;
+    gap: 1.5rem;
     max-width: 99%;
     font-family: cursive !important;
   }
@@ -783,10 +782,10 @@ header .navbar a:hover{
     font-family: cursive !important;
   }
   .blog-card-custom img {
-    height: 101px;
+    height: 135px;
   }
   .blog-card-custom .content {
-    padding: 0.675rem 0.73125rem 0.84375rem 0.73125rem;
+    padding: 0.9rem 0.975rem 1.125rem 0.975rem;
     font-family: cursive !important;
   }
   .blog-card-custom .content h2 {
@@ -799,14 +798,14 @@ header .navbar a:hover{
   }
   .blog-card-custom .btn-custom {
     font-size: 0.75rem;
-    padding: 0.28125rem 0.84375rem;
+    padding: 0.375rem 1.125rem;
     font-family: cursive !important;
   }
   .latest-badge {
     font-size: 0.6375rem;
-    padding: 0.140625rem 0.50625rem;
-    top: 6.75px;
-    left: 6.75px;
+    padding: 0.1875rem 0.675rem;
+    top: 9px;
+    left: 9px;
     font-family: cursive !important;
   }
 }
