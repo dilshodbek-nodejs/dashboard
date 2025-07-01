@@ -9,10 +9,12 @@ import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import QuizPage from './components/QuizPage';
 import MainSiteApp from './components/MainSite/MainSiteApp';
 import BlogPage from './components/MainSite/BlogPage';
+import Login from './components/MainSite/Login';
+import Register from './components/MainSite/Register';
 
 const baseUri = '/api';
 const backendBaseUrl = 'http://15.235.141.2:5000';
-// const baseUri = 'http://localhost:5000';
+// const baseUri = '/api';
 // const backendBaseUrl = 'http://localhost:5000';
 const getImageUrl = (url: any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
@@ -276,6 +278,8 @@ function App() {
       } />
       <Route path="/quiz" element={<QuizPage />} />
       <Route path="/blog" element={<BlogPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/*" element={<MainSiteApp />} />
     </Routes>
   );

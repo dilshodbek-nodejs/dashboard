@@ -11,6 +11,7 @@ interface BlogCreationProps {
 }
 
 const backendBaseUrl = '';
+// const backendBaseUrl = 'http://localhost:5000';
 const getImageUrl = (url:any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 export const BlogCreation: React.FC<BlogCreationProps> = ({ 
