@@ -106,7 +106,7 @@ const Home: React.FC = () => {
         <div style={{ textAlign: 'center', color: 'red', fontSize: '2rem' }}>Bloglarni yuklab bo‘lmadi</div>
       ) : isMobile ? (
         blogs.length > 0 && (
-          <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-start', width: '100%' }}>
             <div
               style={{
                 minWidth: '98vw',
@@ -120,7 +120,6 @@ const Home: React.FC = () => {
                 flexDirection: 'column',
                 transition: 'transform 0.18s, box-shadow 0.18s',
                 position: 'relative',
-                height: 492,
                 margin: '0 auto',
               }}
               className="slider-blog-card"

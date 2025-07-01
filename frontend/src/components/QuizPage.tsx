@@ -88,9 +88,12 @@ const QuizPage: React.FC = () => {
   if (loading) {
     return (
       <div className={styles.quizPageRoot} style={backgroundStyle}>
-        <button className={mobileButtonClass} onClick={() => navigate('/main')}>
-          Bosh menyuga qaytish
-        </button>
+        {/* Only show on loading screen if not in quiz */}
+        {!selectedTopic && (
+          <button className={mobileButtonClass} onClick={() => navigate('/main')}>
+            Bosh menyuga qaytish
+          </button>
+        )}
         <img src="/images/about-img.png" alt="Owl" className={styles.quizPageSideImage + ' ' + styles.quizPageOwl} />
         <img src="/images/contact-img.png" alt="Crocodile" className={styles.quizPageSideImage + ' ' + styles.quizPageCrocodile} />
         <div className={styles.quizPageLoadingText}>Yuklanmoqda...</div>
@@ -101,9 +104,12 @@ const QuizPage: React.FC = () => {
   if (error) {
     return (
       <div className={styles.quizPageRoot} style={backgroundStyle}>
-        <button className={mobileButtonClass} onClick={() => navigate('/main')}>
-          Bosh menyuga qaytish
-        </button>
+        {/* Only show on error screen if not in quiz */}
+        {!selectedTopic && (
+          <button className={mobileButtonClass} onClick={() => navigate('/main')}>
+            Bosh menyuga qaytish
+          </button>
+        )}
         <img src="/images/about-img.png" alt="Owl" className={styles.quizPageSideImage + ' ' + styles.quizPageOwl} />
         <img src="/images/contact-img.png" alt="Crocodile" className={styles.quizPageSideImage + ' ' + styles.quizPageCrocodile} />
         <div className={styles.quizPageErrorText}>Ma'lumotlarni yuklab bo'lmadi</div>
@@ -188,8 +194,29 @@ const QuizPage: React.FC = () => {
     );
   }
 
+  // Show 'Stop quiz and go to quiz packs' button only during quiz
+  const stopQuizButton = (
+    <button
+      className={mobileButtonClass}
+      onClick={() => {
+        setSelectedTopic(null);
+        setQuestions([]);
+        setSelected([]);
+        setCurrent(0);
+        setPoints(0);
+        setShowResult(false);
+        // Do NOT navigate to /main
+      }}
+      style={{ zIndex: 30 }}
+    >
+      Testni to'xtatib, test to'plamlariga qaytish
+    </button>
+  );
+
   return (
     <div className={styles.quizPageRoot} style={backgroundStyle}>
+      {/* Show stop quiz button only during quiz */}
+      {stopQuizButton}
       <img src="/images/about-img.png" alt="Owl" className={styles.quizPageSideImage + ' ' + styles.quizPageOwl} />
       <img src="/images/contact-img.png" alt="Crocodile" className={styles.quizPageSideImage + ' ' + styles.quizPageCrocodile} />
       <div className={styles.quizPageCard + ' ' + styles.quizPageCardLarge}>

@@ -10,8 +10,10 @@ import QuizPage from './components/QuizPage';
 import MainSiteApp from './components/MainSite/MainSiteApp';
 import BlogPage from './components/MainSite/BlogPage';
 
-const baseUri = '/api';
-const backendBaseUrl = '';
+// const baseUri = '/api';
+// const backendBaseUrl = '';
+const baseUri = 'http://localhost:5000';
+const backendBaseUrl = 'http://localhost:5000';
 const getImageUrl = (url: any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 function MainDashboard() {
