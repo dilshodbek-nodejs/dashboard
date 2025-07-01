@@ -47,7 +47,7 @@ const Home: React.FC = () => {
     const speed = isMobile ? 0.3 : 0.7; // px per frame
     let animationFrame: number;
     let paused = false;
-    let touchTimeout: NodeJS.Timeout | null = null;
+    let touchTimeout: number | null = null;
     const totalWidth = slider.scrollWidth;
     function animate() {
       if (!slider || paused) {
@@ -72,8 +72,8 @@ const Home: React.FC = () => {
     } else {
       slider.addEventListener('touchstart', pause);
       const touchEndHandler = () => {
-        if (touchTimeout) clearTimeout(touchTimeout);
-        touchTimeout = setTimeout(() => { paused = false; }, 1000);
+        if (touchTimeout) window.clearTimeout(touchTimeout);
+        touchTimeout = window.setTimeout(() => { paused = false; }, 1000) as unknown as number;
       };
       slider.addEventListener('touchend', touchEndHandler);
     }
@@ -85,7 +85,7 @@ const Home: React.FC = () => {
       } else {
         slider.removeEventListener('touchstart', pause);
         slider.removeEventListener('touchend', () => {});
-        if (touchTimeout) clearTimeout(touchTimeout);
+        if (touchTimeout) window.clearTimeout(touchTimeout);
       }
     };
   }, [blogs, windowWidth]);
