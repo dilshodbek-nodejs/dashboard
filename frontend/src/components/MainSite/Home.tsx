@@ -10,8 +10,8 @@ interface Blog {
   content: { id: string; type: string; content: string }[];
 }
 
-const backendBaseUrl = '';
-// const backendBaseUrl = 'http://localhost:5000';
+// const backendBaseUrl = '';
+const backendBaseUrl = 'http://localhost:5000';
 
 const Home: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);

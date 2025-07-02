@@ -8,6 +8,7 @@ import Blogs from './Blogs';
 import Contact from './Contact';
 import Footer from './Footer';
 import './main-site.css';
+import { Route } from 'react-router-dom';
 
 const MainSiteApp: React.FC = () => (
   <>

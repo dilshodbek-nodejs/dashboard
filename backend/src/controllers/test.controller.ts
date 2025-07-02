@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import * as testService from '../services/test.service';
+import User from '../models/user.model';
 
 export async function listTests(req: Request, res: Response) {
   const tests = await testService.getAllTests();
@@ -46,4 +47,30 @@ export async function createTestTopicHandler(req: Request, res: Response) {
 export async function getAllTopicsHandler(req: Request, res: Response) {
   const topics = await testService.getAllTopics();
   res.json(topics);
+}
+
+export async function solveTestHandler(req: any, res: Response) {
+  if (!req.user) return res.status(401).json({ message: 'Foydalanuvchi topilmadi' });
+  const userId = req.user._id;
+  const testId = req.params.id;
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    const alreadySolved = user.solvedTests.some((t: any) => t.test.toString() === testId);
+    if (!alreadySolved) {
+      // Fetch the test and check the answer
+      const test = await testService.getTestById(testId);
+      if (!test) return res.status(404).json({ message: 'Test not found' });
+      const { answer } = req.body; // Assume answer is sent in body
+      const correctOption = test.options.find((opt: any) => opt.isCorrect);
+      const isCorrect = !!(correctOption && answer === correctOption.text);
+      user.solvedTests.push({ test: testId, isCorrect });
+      user.points += isCorrect ? 10 : 0; // Only award points for correct answers
+    }
+    user.rank = Math.max(1, 1000 - user.points);
+    await user.save();
+    res.json({ solvedTests: user.solvedTests, points: user.points, rank: user.rank });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error', error: err });
+  }
 } 

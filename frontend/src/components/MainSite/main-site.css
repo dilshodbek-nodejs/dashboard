@@ -6,7 +6,7 @@
   margin:0; padding:0;
   box-sizing: border-box;
   font-family: cursive !important;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   text-decoration: none;
   outline:none; border:none;
   transition: all .2s ease-out;
@@ -1343,4 +1343,67 @@ header .navbar a:hover{
   .login-heading {
     font-size: 2rem;
   }
+}
+
+.login-error-popup, .login-success-popup {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background: #fff;
+  color: #d32f2f;
+  border: 2px solid #d32f2f;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.3rem;
+  min-width: 180px;
+  max-width: 80vw;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: fadeInDown 0.4s;
+}
+
+.login-success-popup {
+  color: #388e3c;
+  border-color: #388e3c;
+}
+
+.login-error-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translate(-50%, -30px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes slideInRightMobile {
+  from { opacity: 0; transform: translateX(100%) scale(0.95); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@media (max-width: 600px) {
+  .login-error-popup, .login-success-popup {
+    left: auto;
+    right: 10px;
+    top: 10px;
+    transform: none;
+    min-width: 140px;
+    max-width: 90vw;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    animation: slideInRightMobile 0.4s;
+  }
+}
+
+.login-main-card, .login-main-card-solid {
+  position: relative;
 }

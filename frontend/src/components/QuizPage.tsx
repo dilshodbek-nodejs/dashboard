@@ -3,6 +3,13 @@ import styles from './QuizPage.module.css';
 import { Test, TestTopic } from '../types';
 import { useNavigate } from 'react-router-dom';
 
+function getCookie(name: string) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift();
+  return null;
+}
+
 const QuizPage: React.FC = () => {
   const [topics, setTopics] = useState<TestTopic[]>([]);
   const [tests, setTests] = useState<Test[]>([]);
@@ -63,6 +70,29 @@ const QuizPage: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (showResult && selectedTopic) {
+      const token = getCookie('token');
+      fetch('/api/profile/quiz', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          topicId: selectedTopic.id,
+          points: points,
+          total: questions.length
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          // Optionally show a message or update UI
+          // e.g., setEarnedPoints(data.earned)
+        });
+    }
+  }, [showResult, selectedTopic, points, questions.length]);
 
   const backgroundStyle: React.CSSProperties = {
     minHeight: '100vh',
@@ -236,11 +266,21 @@ const QuizPage: React.FC = () => {
                 (selected[current] !== null && idx === correctIdx && opt.isCorrect ? ' ' + styles.quizPageOptionCorrect : '') +
                 (selected[current] !== null && selected[current] === idx && idx !== correctIdx ? ' ' + styles.quizPageOptionWrong : '')
               }
-              onClick={() => {
+              onClick={async () => {
                 if (selected[current] !== null) return;
                 const updated = [...selected];
                 updated[current] = idx;
                 setSelected(updated);
+                // Send answer to backend
+                const token = getCookie('token');
+                await fetch(`/api/tests/${q.id}/solve`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                  },
+                  body: JSON.stringify({ answer: opt.text })
+                });
               }}
               disabled={selected[current] !== null}
             >

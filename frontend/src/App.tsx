@@ -5,17 +5,18 @@ import { BlogCreation } from './components/BlogCreation';
 import { TestList } from './components/TestList';
 import { BlogList } from './components/BlogList';
 import { Test, Blog } from './types';
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import QuizPage from './components/QuizPage';
 import MainSiteApp from './components/MainSite/MainSiteApp';
 import BlogPage from './components/MainSite/BlogPage';
 import Login from './components/MainSite/Login';
 import Register from './components/MainSite/Register';
+import Profile from './components/MainSite/Profile';
 
 const baseUri = '/api';
-const backendBaseUrl = 'http://15.235.141.2:5000';
+// const backendBaseUrl = 'http://15.235.141.2:5000';
 // const baseUri = '/api';
-// const backendBaseUrl = 'http://localhost:5000';
+const backendBaseUrl = 'http://localhost:5000';
 const getImageUrl = (url: any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 function MainDashboard() {
@@ -55,7 +56,7 @@ function MainDashboard() {
       body: JSON.stringify(testData)
     });
     const newTest = await res.json();
-    setTests(prev => [newTest, ...prev]);
+    setTests(prev => [{ ...newTest, id: newTest._id }, ...prev]);
   };
 
   const handleTestUpdate = async (updatedTest: Test) => {
@@ -257,6 +258,18 @@ function MainDashboard() {
   );
 }
 
+function getCookie(name: string) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift();
+  return null;
+}
+
+function PrivateRoute({ children }: { children: JSX.Element }) {
+  const token = getCookie('token');
+  return token ? children : <Navigate to="/login" replace />;
+}
+
 function App() {
   const location = useLocation();
   const isQuizPage = location.pathname === '/quiz';
@@ -280,6 +293,7 @@ function App() {
       <Route path="/blog" element={<BlogPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/me" element={<PrivateRoute><Profile /></PrivateRoute>} />
       <Route path="/*" element={<MainSiteApp />} />
     </Routes>
   );

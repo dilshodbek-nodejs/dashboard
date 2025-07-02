@@ -32,6 +32,9 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.listTests = listTests;
 exports.getTest = getTest;
@@ -40,7 +43,9 @@ exports.updateTestHandler = updateTestHandler;
 exports.deleteTestHandler = deleteTestHandler;
 exports.createTestTopicHandler = createTestTopicHandler;
 exports.getAllTopicsHandler = getAllTopicsHandler;
+exports.solveTestHandler = solveTestHandler;
 const testService = __importStar(require("../services/test.service"));
+const user_model_1 = __importDefault(require("../models/user.model"));
 async function listTests(req, res) {
     const tests = await testService.getAllTests();
     res.json(tests);
@@ -83,4 +88,33 @@ async function createTestTopicHandler(req, res) {
 async function getAllTopicsHandler(req, res) {
     const topics = await testService.getAllTopics();
     res.json(topics);
+}
+async function solveTestHandler(req, res) {
+    if (!req.user)
+        return res.status(401).json({ message: 'Foydalanuvchi topilmadi' });
+    const userId = req.user._id;
+    const testId = req.params.id;
+    try {
+        const user = await user_model_1.default.findById(userId);
+        if (!user)
+            return res.status(404).json({ message: 'User not found' });
+        const alreadySolved = user.solvedTests.some((t) => t.test.toString() === testId);
+        if (!alreadySolved) {
+            // Fetch the test and check the answer
+            const test = await testService.getTestById(testId);
+            if (!test)
+                return res.status(404).json({ message: 'Test not found' });
+            const { answer } = req.body; // Assume answer is sent in body
+            const correctOption = test.options.find((opt) => opt.isCorrect);
+            const isCorrect = !!(correctOption && answer === correctOption.text);
+            user.solvedTests.push({ test: testId, isCorrect });
+            user.points += isCorrect ? 10 : 0; // Only award points for correct answers
+        }
+        user.rank = Math.max(1, 1000 - user.points);
+        await user.save();
+        res.json({ solvedTests: user.solvedTests, points: user.points, rank: user.rank });
+    }
+    catch (err) {
+        res.status(500).json({ message: 'Server error', error: err });
+    }
 }

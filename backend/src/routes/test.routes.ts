@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { listTests, getTest, createTestHandler, updateTestHandler, deleteTestHandler, createTestTopicHandler, getAllTopicsHandler } from '../controllers/test.controller';
+import { listTests, getTest, createTestHandler, updateTestHandler, deleteTestHandler, createTestTopicHandler, getAllTopicsHandler, solveTestHandler } from '../controllers/test.controller';
+import { authenticateJWT } from '../middleware/auth';
 
 const testRouter = Router();
 
@@ -9,6 +10,7 @@ testRouter.get('/', listTests)
     .post('/', createTestHandler)
     .get('/:id', getTest)
     .put('/:id', updateTestHandler)
-    .delete('/:id', deleteTestHandler);
+    .delete('/:id', deleteTestHandler)
+    .post('/:id/solve', authenticateJWT, solveTestHandler);
 
 export default testRouter; 
