@@ -14,9 +14,9 @@ import Register from './components/MainSite/Register';
 import Profile from './components/MainSite/Profile';
 
 const baseUri = '/api';
-// const backendBaseUrl = 'http://15.235.141.2:5000';
+const backendBaseUrl = 'http://15.235.141.2:5000';
 // const baseUri = '/api';
-const backendBaseUrl = 'http://localhost:5000';
+// const backendBaseUrl = 'http://localhost:5000';
 const getImageUrl = (url: any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 function MainDashboard() {

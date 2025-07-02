@@ -33,8 +33,8 @@ const Blogs: React.FC = () => {
       });
   }, []);
 
-  // const backendBaseUrl = '';
-  const backendBaseUrl = 'http://localhost:5000';
+  const backendBaseUrl = '';
+  // const backendBaseUrl = 'http://localhost:5000';
   const visibleBlogs = blogs.slice(0, visibleCount);
 
   const handleShowMore = () => {

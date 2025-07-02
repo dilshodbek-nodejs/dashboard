@@ -6,9 +6,10 @@ export default defineConfig({
     plugins: [react()],
     server: {
         proxy: {
-            // '/api': 'http://15.235.141.2:5000'
-            '/api': 'http://localhost:5000',
-            '/uploads': 'http://localhost:5000'
+            '/api': 'http://15.235.141.2:5000',
+            '/uploads': 'http://15.235.141.2:5000'
+            // '/api': 'http://localhost:5000',
+            // '/uploads': 'http://localhost:5000'
         }
     },
     build: {
