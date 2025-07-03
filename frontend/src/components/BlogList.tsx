@@ -11,7 +11,7 @@ interface BlogListProps {
 
 const getImageUrl = (url: string | null) => {
 
-  const isProd=false
+  const isProd=true
   let backendBaseUrl;
   
   
@@ -20,7 +20,7 @@ const getImageUrl = (url: string | null) => {
   } else {
     backendBaseUrl = 'http://localhost:5000';
   }
-  
+
   if (!url) return 'https://via.placeholder.com/150'; // Fallback image
   return url.startsWith('http') ? url : backendBaseUrl + url;
 };

@@ -10,7 +10,7 @@ interface Blog {
   content: { id: string; type: string; content: string }[];
 }
 
-const isProd=false
+const isProd=true
 let backendBaseUrl;
 
 

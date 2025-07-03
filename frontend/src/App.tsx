@@ -18,7 +18,7 @@ import Ranks from './components/MainSite/Ranks';
 
 const baseUri = '/api';
 
-const isProd=false
+const isProd=true
 let backendBaseUrl;
 
 if (isProd) {
