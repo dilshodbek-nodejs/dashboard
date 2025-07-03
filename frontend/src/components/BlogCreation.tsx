@@ -11,10 +11,15 @@ interface BlogCreationProps {
   onCancelEdit?: () => void;
 }
 
-const backendBaseUrl =
-  process.env.NODE_ENV !== 'development'
-    ? ''
-    : 'http://localhost:5000';
+const isProd=false
+let backendBaseUrl;
+
+
+if (isProd) {
+  backendBaseUrl = '';
+} else {
+  backendBaseUrl = 'http://localhost:5000';
+}
 const getImageUrl = (url:any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 export const BlogCreation: React.FC<BlogCreationProps> = ({ 

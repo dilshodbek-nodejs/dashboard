@@ -15,11 +15,20 @@ import Profile from './components/MainSite/Profile';
 import Ranks from './components/MainSite/Ranks';
 
 
-const isProd = process.env.NODE_ENV !== 'development';
+
 const baseUri = '/api';
-const backendBaseUrl = isProd ? 'http://15.235.141.2:5000' : 'http://localhost:5000';
+
+const isProd=false
+let backendBaseUrl;
+
+if (isProd) {
+  backendBaseUrl = '';
+} else {
+  backendBaseUrl = 'http://localhost:5000';
+}
+console.log(isProd)
 const getImageUrl = (url: any) => url?.startsWith('http') ? url : backendBaseUrl + url;
-console.log(process.env.NODE_ENV)
+
 function MainDashboard() {
   const [activeSection, setActiveSection] = useState<'tests' | 'blogs' | 'topics'>('tests');
   const [tests, setTests] = useState<Test[]>([]);

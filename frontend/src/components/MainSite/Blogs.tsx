@@ -33,7 +33,7 @@ const Blogs: React.FC = () => {
       });
   }, []);
 
-  const backendBaseUrl = process.env.NODE_ENV !== 'development' ? '' : 'http://localhost:5000';
+  const backendBaseUrl = process.env.NODE_ENV === 'development' ? '' : 'http://localhost:5000';
   const visibleBlogs = blogs.slice(0, visibleCount);
 
   const handleShowMore = () => {

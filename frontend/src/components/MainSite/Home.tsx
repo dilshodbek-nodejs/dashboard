@@ -10,7 +10,15 @@ interface Blog {
   content: { id: string; type: string; content: string }[];
 }
 
-const backendBaseUrl = process.env.NODE_ENV !== 'development' ? '' : 'http://localhost:5000';
+const isProd=false
+let backendBaseUrl;
+
+
+if (isProd) {
+  backendBaseUrl = '';
+} else {
+  backendBaseUrl = 'http://localhost:5000';
+}
 
 const Home: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);

@@ -10,7 +10,17 @@ interface BlogListProps {
 }
 
 const getImageUrl = (url: string | null) => {
-  const backendBaseUrl = ''; 
+
+  const isProd=false
+  let backendBaseUrl;
+  
+  
+  if (isProd) {
+    backendBaseUrl = '';
+  } else {
+    backendBaseUrl = 'http://localhost:5000';
+  }
+  
   if (!url) return 'https://via.placeholder.com/150'; // Fallback image
   return url.startsWith('http') ? url : backendBaseUrl + url;
 };
