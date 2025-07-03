@@ -9,4 +9,5 @@ router.get('/me', auth_1.authenticateJWT, profile_controller_1.getProfile);
 router.post('/quiz', auth_1.authenticateJWT, profile_controller_1.saveQuizResult);
 router.put('/me', auth_1.authenticateJWT, profile_controller_1.updateProfile);
 router.post('/me/avatar', auth_1.authenticateJWT, multer_1.upload.single('avatar'), profile_controller_1.updateProfileAvatar);
+router.get('/ranks', profile_controller_1.getAllRanks);
 exports.default = router;

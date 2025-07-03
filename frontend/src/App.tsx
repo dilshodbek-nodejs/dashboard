@@ -12,13 +12,14 @@ import BlogPage from './components/MainSite/BlogPage';
 import Login from './components/MainSite/Login';
 import Register from './components/MainSite/Register';
 import Profile from './components/MainSite/Profile';
+import Ranks from './components/MainSite/Ranks';
 
+
+const isProd = process.env.NODE_ENV !== 'development';
 const baseUri = '/api';
-const backendBaseUrl = 'http://15.235.141.2:5000';
-// const baseUri = '/api';
-// const backendBaseUrl = 'http://localhost:5000';
+const backendBaseUrl = isProd ? 'http://15.235.141.2:5000' : 'http://localhost:5000';
 const getImageUrl = (url: any) => url?.startsWith('http') ? url : backendBaseUrl + url;
-
+console.log(process.env.NODE_ENV)
 function MainDashboard() {
   const [activeSection, setActiveSection] = useState<'tests' | 'blogs' | 'topics'>('tests');
   const [tests, setTests] = useState<Test[]>([]);
@@ -294,6 +295,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/me" element={<PrivateRoute><Profile /></PrivateRoute>} />
+      <Route path="/ranks" element={<Ranks />} />
       <Route path="/*" element={<MainSiteApp />} />
     </Routes>
   );

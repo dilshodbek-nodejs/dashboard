@@ -17,7 +17,7 @@ app.use((0, cors_1.default)({ "origin": "*" }));
 app.use(body_parser_1.default.json({ limit: '150mb' }));
 app.use(express_1.default.json({ limit: '150mb' }));
 app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '../uploads')));
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://0.0.0.0:27017/estetik-tarbiya';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/estetik-tarbiya';
 mongoose_1.default.connect(MONGODB_URI)
     .then(() => console.log('MongoDB connected'))
     .catch((err) => console.error('MongoDB connection error:', err));

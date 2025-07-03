@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import User from '../models/user.model';
 import { TestTopicModel, TestModel } from '../models/test.model';
+import fs from 'fs';
+import path from 'path';
 
 export const getProfile = async (req: any, res: Response) => {
   if (!req.user) return res.status(401).json({ message: 'Foydalanuvchi topilmadi' });
@@ -119,6 +121,19 @@ export const updateProfileAvatar = async (req: any, res: Response) => {
     console.log('Avatar upload:', req.file);
     const user = await User.findById(req.user._id);
     if (!user) return res.status(404).json({ message: 'User not found' });
+
+    // Remove old avatar file if it exists and is not the default
+    if (user.avatar && user.avatar.startsWith('/uploads/')) {
+      const oldAvatarPath = path.join(__dirname, '../../', user.avatar);
+      fs.unlink(oldAvatarPath, (err) => {
+        if (err) {
+          console.warn('Failed to remove old avatar:', err.message);
+        } else {
+          console.log('Old avatar removed:', oldAvatarPath);
+        }
+      });
+    }
+
     // Save relative path to avatar
     const avatarPath = `/uploads/${req.file.filename}`;
     user.avatar = avatarPath;
@@ -127,6 +142,18 @@ export const updateProfileAvatar = async (req: any, res: Response) => {
     res.json({ success: true, avatar: user.avatar });
   } catch (err) {
     console.error('Avatar upload error:', err);
+    res.status(500).json({ message: 'Server error', error: err });
+  }
+};
+
+export const getAllRanks = async (req: any, res: Response) => {
+  try {
+    const users = await User.find({}, 'username points avatar')
+      .sort({ points: -1 })
+      .lean();
+    users.forEach((u: any, i: number) => { u.rank = i + 1; });
+    res.json({ users });
+  } catch (err) {
     res.status(500).json({ message: 'Server error', error: err });
   }
 }; 

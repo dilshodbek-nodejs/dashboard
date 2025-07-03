@@ -49,8 +49,10 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const hasToken = !!getCookie('token');
+
   return (
-    <header>
+    <header className={hasToken ? '' : 'navbar-tall'}>
       <a href="#" className="logo">
         <img src="/logo.png" alt="logo" />
       </a>
@@ -105,6 +107,7 @@ const Header: React.FC = () => {
         <a href="/quiz" onClick={handleNavClick}>Testlar</a>
         <Link to="/blog" onClick={handleNavClick}>Tarbiya uchun</Link>
         <a href="#contact" onClick={handleNavClick}>Aloqa</a>
+        <Link to="/ranks">Reyting</Link>
         { !getCookie('token') && (
           <Link to="/login" className="btn" style={{marginLeft: '2rem'}} onClick={handleNavClick}>Kirish</Link>
         )}

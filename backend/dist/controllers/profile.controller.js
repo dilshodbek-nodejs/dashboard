@@ -3,9 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProfileAvatar = exports.updateProfile = exports.saveQuizResult = exports.getProfile = void 0;
+exports.getAllRanks = exports.updateProfileAvatar = exports.updateProfile = exports.saveQuizResult = exports.getProfile = void 0;
 const user_model_1 = __importDefault(require("../models/user.model"));
 const test_model_1 = require("../models/test.model");
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const getProfile = async (req, res) => {
     if (!req.user)
         return res.status(401).json({ message: 'Foydalanuvchi topilmadi' });
@@ -139,6 +141,18 @@ const updateProfileAvatar = async (req, res) => {
         const user = await user_model_1.default.findById(req.user._id);
         if (!user)
             return res.status(404).json({ message: 'User not found' });
+        // Remove old avatar file if it exists and is not the default
+        if (user.avatar && user.avatar.startsWith('/uploads/')) {
+            const oldAvatarPath = path_1.default.join(__dirname, '../../', user.avatar);
+            fs_1.default.unlink(oldAvatarPath, (err) => {
+                if (err) {
+                    console.warn('Failed to remove old avatar:', err.message);
+                }
+                else {
+                    console.log('Old avatar removed:', oldAvatarPath);
+                }
+            });
+        }
         // Save relative path to avatar
         const avatarPath = `/uploads/${req.file.filename}`;
         user.avatar = avatarPath;
@@ -152,3 +166,16 @@ const updateProfileAvatar = async (req, res) => {
     }
 };
 exports.updateProfileAvatar = updateProfileAvatar;
+const getAllRanks = async (req, res) => {
+    try {
+        const users = await user_model_1.default.find({}, 'username points avatar')
+            .sort({ points: -1 })
+            .lean();
+        users.forEach((u, i) => { u.rank = i + 1; });
+        res.json({ users });
+    }
+    catch (err) {
+        res.status(500).json({ message: 'Server error', error: err });
+    }
+};
+exports.getAllRanks = getAllRanks;

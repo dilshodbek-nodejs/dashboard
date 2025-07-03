@@ -56,6 +56,11 @@ const Profile: React.FC = () => {
         const res = await fetch('/api/profile/me', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
+        if (res.status === 401) {
+          deleteCookie('token');
+          window.location.reload();
+          return;
+        }
         if (!res.ok) throw new Error('Foydalanuvchi maʼlumotlarini olishda xatolik');
         const data = await res.json();
         setUser({
@@ -181,6 +186,9 @@ const Profile: React.FC = () => {
     <div className="profile-page-bg" style={{ minHeight: '100vh', background: '#f8f6f2', padding: '2rem' }}>
       <div className="profile-page-container" style={{ maxWidth: 700, margin: '0 auto', borderRadius: 20, boxShadow: '0 2px 16px rgba(0,0,0,0.07)', background: '#fff', padding: '2.5rem', display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'space-between' }}>
         <div style={{ flex: '1 1 260px', minWidth: 240 }}>
+          <div style={{ textAlign: 'center', fontWeight: 700, fontSize: 28, color: '#f76c6c', marginBottom: 18, fontFamily: 'cursive', letterSpacing: 1 }}>
+            Mening Profilim
+          </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 24 }}>
             <div style={{ width: 110, height: 110, borderRadius: '50%', background: '#ffe082', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
               <img src={editMode ? (editData?.avatar || '/logo.png') : (user?.avatar || '/logo.png')} alt="avatar" style={{ width: 80, height: 80, borderRadius: '50%' }} />
@@ -191,9 +199,35 @@ const Profile: React.FC = () => {
               <form style={{ display: 'flex', flexDirection: 'column', gap: 18 }} onSubmit={handleSave}>
                 <label style={{ fontWeight: 500, fontSize: 16, marginBottom: 8 }}>Profil rasmi
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 6 }}>
-                    <img src={editData?.avatar || '/logo.png'} alt="avatar" style={{ width: 60, height: 60, borderRadius: '50%', border: '2px solid #b3d1fa', objectFit: 'cover' }} />
-                    <input type="file" accept="image/*" onChange={handleAvatarChange} style={{ fontSize: 15 }} />
-                    {avatarUploading && <span style={{ color: '#2563eb', fontSize: 15 }}>Yuklanmoqda...</span>}
+                    <img src={editData?.avatar || '/logo.png'} alt="avatar" style={{ width: 60, height: 60, borderRadius: '50%', border: '2px solid #f76c6c', objectFit: 'cover' }} />
+                    <label
+                      htmlFor="avatar-upload"
+                      style={{
+                        background: 'linear-gradient(90deg, #f76c6c 0%, #f53b57 100%)',
+                        color: '#fff',
+                        padding: '8px 18px',
+                        borderRadius: 8,
+                        cursor: 'pointer',
+                        fontWeight: 600,
+                        fontSize: 15,
+                        boxShadow: '0 2px 8px rgba(247,108,108,0.13)',
+                        transition: 'background 0.2s',
+                        border: 'none',
+                        display: 'inline-block'
+                      }}
+                      onMouseOver={e => (e.currentTarget.style.background = 'linear-gradient(90deg, #f53b57 0%, #f76c6c 100%)')}
+                      onMouseOut={e => (e.currentTarget.style.background = 'linear-gradient(90deg, #f76c6c 0%, #f53b57 100%)')}
+                    >
+                      Rasmni o‘zgartirish
+                      <input
+                        id="avatar-upload"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleAvatarChange}
+                        style={{ display: 'none' }}
+                      />
+                    </label>
+                    {avatarUploading && <span style={{ color: '#f76c6c', fontSize: 15 }}>Yuklanmoqda...</span>}
                   </div>
                 </label>
                 <label style={{ fontWeight: 500, fontSize: 16 }}>Foydalanuvchi nomi
@@ -289,7 +323,6 @@ const Profile: React.FC = () => {
           )}
         </div>
       </div>
-      <h1 style={{ textAlign: 'center', color: '#f76c6c', fontFamily: 'cursive', fontWeight: 700, fontSize: 38, margin: '2.5rem 0 0.5rem' }}>Mening Profilim</h1>
       {error && <div style={{color:'#f76c6c',textAlign:'center',marginTop:'1rem',fontSize:'1.2rem'}}>{error}</div>}
     </div>
   );

@@ -3,6 +3,7 @@ import { Upload, X } from 'lucide-react';
 import { Blog, ContentBlock } from '../types';
 import { DynamicEditor } from './DynamicEditor';
 
+
 interface BlogCreationProps {
   onBlogCreate: (blog: Omit<Blog, 'id' | 'createdAt'>) => void;
   onBlogUpdate?: (blog: Blog) => void;
@@ -10,8 +11,10 @@ interface BlogCreationProps {
   onCancelEdit?: () => void;
 }
 
-const backendBaseUrl = '';
-// const backendBaseUrl = 'http://localhost:5000';
+const backendBaseUrl =
+  process.env.NODE_ENV !== 'development'
+    ? ''
+    : 'http://localhost:5000';
 const getImageUrl = (url:any) => url?.startsWith('http') ? url : backendBaseUrl + url;
 
 export const BlogCreation: React.FC<BlogCreationProps> = ({ 

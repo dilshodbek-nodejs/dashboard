@@ -1,15 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+
 export default defineConfig({
     base: '/',
     plugins: [react()],
     server: {
         proxy: {
-            '/api': 'http://15.235.141.2:5000',
-            '/uploads': 'http://15.235.141.2:5000'
-            // '/api': 'http://localhost:5000',
-            // '/uploads': 'http://localhost:5000'
+            ...(process.env.NODE_ENV !== 'development'
+                ? {
+                    '/api': 'http://15.235.141.2:5000',
+                    '/uploads': 'http://15.235.141.2:5000'
+                }
+                : {
+                    '/api': 'http://localhost:5000',
+                    '/uploads': 'http://localhost:5000'
+                }
+            )
         }
     },
     build: {

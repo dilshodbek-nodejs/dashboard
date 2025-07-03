@@ -12,11 +12,30 @@ const Register: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
+  const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Remove spaces and limit to 12 characters
+    let value = e.target.value.replace(/\s/g, '');
+    if (value.length > 12) value = value.slice(0, 12);
+    setUsername(value);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setShowError(false);
     setSuccess(false);
+    // Prevent submission if username contains spaces (shouldn't happen, but double check)
+    if (/\s/.test(username)) {
+      setError("Foydalanuvchi nomida faqat bitta so'z bo'lishi kerak (bo'shliq yo'q)!");
+      setShowError(true);
+      return;
+    }
+    // Prevent submission if username is longer than 12 characters
+    if (username.length > 12) {
+      setError("Foydalanuvchi nomi 12 ta belgidan oshmasligi kerak!");
+      setShowError(true);
+      return;
+    }
     try {
       const res = await fetch('/api/auth/register', {
         method: 'POST',
@@ -70,7 +89,7 @@ const Register: React.FC = () => {
         <form className="login-form" onSubmit={handleSubmit}>
           <div className="login-form-group">
             <label className="login-label">Foydalanuvchi nomi</label>
-            <input type="text" className="login-input" placeholder="Foydalanuvchi nomi" required value={username} onChange={e => setUsername(e.target.value)} />
+            <input type="text" className="login-input" placeholder="Foydalanuvchi nomi" required value={username} onChange={handleUsernameChange} maxLength={12} />
           </div>
           <div className="login-form-group">
             <label className="login-label">Email</label>

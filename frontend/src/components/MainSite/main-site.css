@@ -94,16 +94,20 @@ header{
   background-size: cover;
   background-position: bottom;
   z-index: 10000;
-  padding:1.5rem 7%;
-  padding-bottom: 6rem;
+  padding:0.36rem 2.36%;
+  padding-bottom: 0.83rem;
+  min-height: 52px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: cursive !important;
+  background-size: 115% 132%; /* 15% taller than 115% */
 }
 
 header .logo img{
-  width: 80px;
+  width: 60px;
+  height: 60px;
+  transition: width 0.2s, height 0.2s;
 }
 
 header .logo i{
@@ -587,28 +591,55 @@ header .navbar a:hover{
     font-family: cursive !important;
   }
 
+  header {
+    padding: 0.36rem 2.36%;
+    padding-bottom: 0.83rem;
+    min-height: 52px;
+  }
+  header .logo img {
+    width: 37.8px;
+    height: 37.8px;
+  }
+  header .navbar a {
+    font-size: 1.42rem !important;
+    margin-left: 1rem;
+    padding: 0.83rem 0 !important;
+  }
+  .hamburger-menu {
+    width: 25.96px !important;
+    height: 25.96px !important;
+  }
+
   header .navbar{
     position: absolute;
-    top:-100rem; left: 0; right: 0;
-    background:url(/images/header-bg.png) no-repeat;
+    top: -100rem; left: 0; right: 0;
+    background: url(/images/header-bg.png) no-repeat;
     background-size: cover;
     background-position: center;
     border-top: .1rem solid #333;
-    padding:2rem;
-    font-family: cursive !important;
+    padding: 0.5rem 0.5rem !important;
+    max-height: 82.6vh;
+    overflow-y: auto;
+    z-index: 10001;
   }
 
   header .navbar.active{
-    top:100%;
+    top: 100%;
+    background-size: 115% 132%; /* 15% taller than 115% */
   }
 
   header .navbar a{
     display: block;
-    padding:1.5rem;
-    font-size: 2.5rem;
-    margin:2rem 0;
+    padding: 0.83rem 0 !important;
+    font-size: 1.42rem !important;
+    margin: 0.59rem 0 !important;
     text-align: center;
-    font-family: cursive !important;
+  }
+
+  header .btn {
+    font-size: 1.3rem !important;
+    padding: 0.35rem 1.42rem !important;
+    margin-top: 0.59rem !important;
   }
 
   .home .image img{
@@ -1406,4 +1437,14 @@ header .navbar a:hover{
 
 .login-main-card, .login-main-card-solid {
   position: relative;
+}
+
+.navbar-tall {
+  min-height: 100px; /* or whatever height you want */
+  background-size: 100% 110% !important; /* make background image taller */
+}
+
+.navbar-tall .logo img {
+  width: 65px;
+  height: 60px;
 }
