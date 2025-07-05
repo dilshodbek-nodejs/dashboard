@@ -1448,3 +1448,11 @@ header .navbar a:hover{
   width: 65px;
   height: 60px;
 }
+
+/* Flipbook custom styles */
+.html-flip-book,
+.html-flip-book .page {
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(245,59,87,0.08);
+  border-radius: 12px;
+}

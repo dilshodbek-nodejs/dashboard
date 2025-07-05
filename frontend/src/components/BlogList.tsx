@@ -11,7 +11,7 @@ interface BlogListProps {
 
 const getImageUrl = (url: string | null) => {
 
-  const isProd=true
+  const isProd=false
   let backendBaseUrl;
   
   

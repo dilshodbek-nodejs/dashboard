@@ -12,8 +12,12 @@
   "dependencies": {
     "dotenv": "^17.0.1",
     "lucide-react": "0.263.1",
+    "pdfjs-dist": "^5.3.31",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-flip-page": "^1.6.4",
+    "react-pageflip": "^2.0.3",
+    "react-pdf": "^10.0.1",
     "react-quill": "^2.0.0",
     "react-router-dom": "7.6.2"
   },

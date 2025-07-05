@@ -13,12 +13,12 @@ import Login from './components/MainSite/Login';
 import Register from './components/MainSite/Register';
 import Profile from './components/MainSite/Profile';
 import Ranks from './components/MainSite/Ranks';
-
-
+import BookReadPage from './components/MainSite/BookReadPage';
+import { Page } from 'react-pdf';
 
 const baseUri = '/api';
 
-const isProd=true
+const isProd=false
 let backendBaseUrl;
 
 if (isProd) {
@@ -305,6 +305,7 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/me" element={<PrivateRoute><Profile /></PrivateRoute>} />
       <Route path="/ranks" element={<Ranks />} />
+      <Route path="/read" element={<BookReadPage />} />
       <Route path="/*" element={<MainSiteApp />} />
     </Routes>
   );

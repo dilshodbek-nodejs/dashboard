@@ -11,7 +11,7 @@ interface BlogCreationProps {
   onCancelEdit?: () => void;
 }
 
-const isProd=true
+const isProd=false
 let backendBaseUrl;
 
 
